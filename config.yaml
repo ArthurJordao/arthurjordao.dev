@@ -16,7 +16,7 @@ params:
   profileMode:
     enabled: true
     subtitle: "Software made simple"
-    imageUrl: "images/pp.jpeg"
+    imageUrl: "images/pp.webp"
     imageTitle: "My photo"
   socialIcons:
     - name: "github"
