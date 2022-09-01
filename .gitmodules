@@ -1,4 +1,4 @@
 [submodule "themes/personal-theme"]
 	path = themes/personal-theme
-	url = git@github.com:ArthurJordao/arthurjordao.dev-theme.git
+	url = https://github.com/ArthurJordao/arthurjordao.dev-theme.git 
 
