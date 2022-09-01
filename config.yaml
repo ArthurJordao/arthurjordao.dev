@@ -32,7 +32,7 @@ params:
     - name: "email"
       url: "mailto:hi@arthurjordao.dev"
   assets:
-    favicon: "favicon/favicon.ico"
-    favicon16x16: "favicon/favicon-16x16.png"
-    favicon32x32: "favicon/favicon-32x32.png"
+    favicon: "favicon.ico"
+    favicon16x16: "favicon-16x16.png"
+    favicon32x32: "favicon-32x32.png"
 
