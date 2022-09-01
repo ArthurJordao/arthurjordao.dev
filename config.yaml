@@ -28,7 +28,7 @@ params:
     - name: "instagram"
       url: "https://instagram.com/arthurbjordao"
     - name: "email"
-      url: "mailto:arthurbernardijordao@gmail.com"
+      url: "mailto:hi@arthurjordao.dev"
   assets:
     favicon: "favicon/favicon.ico"
     favicon16x16: "favicon/favicon-16x16.png"
