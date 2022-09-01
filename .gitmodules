@@ -1,0 +1,3 @@
+[submodule "themes/website-theme"]
+	path = themes/website-theme
+	url = https://github.com/ArthurJordao/website-theme

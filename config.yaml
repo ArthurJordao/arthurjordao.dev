@@ -1,0 +1,36 @@
+baseURL: 'https://arthurjordao.dev/'
+languageCode: en-us
+title: Arthur Jordão
+theme: website-theme
+
+enableRobotsTXT: true
+
+minify:
+  disableXML: false
+  minifyOutput: true
+
+googleAnalytics: G-3BJ3FNSC1K
+
+params:
+  env: production
+  profileMode:
+    enabled: true
+    subtitle: "Software made simple"
+    imageUrl: "images/pp.jpeg"
+    imageTitle: "My photo"
+  socialIcons:
+    - name: "github"
+      url: "https://github.com/ArthurJordao"
+    - name: "twitter"
+      url: "https://twitter.com/_ArthurJordao"
+    - name: "linkedin"
+      url: "https://linkedin.com/in/arthurjordao/"
+    - name: "instagram"
+      url: "https://instagram.com/arthurbjordao"
+    - name: "email"
+      url: "mailto:arthurbernardijordao@gmail.com"
+  assets:
+    favicon: "favicon/favicon.ico"
+    favicon16x16: "favicon/favicon-16x16.png"
+    favicon32x32: "favicon/favicon-32x32.png"
+
