@@ -16,8 +16,20 @@ params:
   profileMode:
     enabled: true
     subtitle: "Software made simple"
+    description: Arthur Jordão personal website. Software made simple.
     imageUrl: "images/pp.webp"
     imageTitle: "My photo"
+    buttons:
+        - name: About me
+          url: /about
+  keywords:
+    - blog
+    - software engineering
+    - Arthur Jordão
+    - compilers
+  ShowReadingTime: true
+  mainSections:
+    - about
   socialIcons:
     - name: "github"
       url: "https://github.com/ArthurJordao"
@@ -35,4 +47,13 @@ params:
     favicon: "favicon.ico"
     favicon16x16: "favicon-16x16.png"
     favicon32x32: "favicon-32x32.png"
+languages:
+  en:
+    languageName: "English"
+    weight: 1
+    menu:
+      main:
+        - name: About me
+          url: /about
+
 
