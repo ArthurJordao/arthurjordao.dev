@@ -17,7 +17,7 @@ Hello, my name is Arthur, I am a software engineer currently working at [NoRedIn
 
 I code since I was 12 years old, and I am very passionate about functional programming. My main programming languages are: `clojure`, `Haskell`, and `elm`.
 
-I love the idea that you can build anything with software, good abstractions, and ~~a lot~~ some of patience. The beginning is hard, and there is a lot of try and fail on the middle, but the feeling of getting different concepts and combining them together until you build something is like playing Lego.
+I love the idea that you can build anything with software, good abstractions, and ~~a lot~~ some of patience. The beginning is hard, and there is a lot of try and fail on the middle, but the feeling of getting different concepts and combining them together until you build something is like playing Lego, and that is the feeling that makes me love programming.
 
 I have a Youtube playlist teaching how to build your own lisp in Portuguese, which you can check it [here](https://www.youtube.com/playlist?list=PLsehYmVGS9obMq7OMPg-2dtvQoKlO2AmN).
 
