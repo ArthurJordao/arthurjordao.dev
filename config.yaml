@@ -43,6 +43,8 @@ params:
       url: "https://instagram.com/arthurbjordao"
     - name: "email"
       url: "mailto:hi@arthurjordao.dev"
+    - name: "mastodon"
+      url: "https://bolha.us/@arthurjordao"
   assets:
     favicon: "favicon.ico"
     favicon16x16: "favicon-16x16.png"
