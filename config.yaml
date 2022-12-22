@@ -9,8 +9,6 @@ minify:
   disableXML: false
   minifyOutput: true
 
-googleAnalytics: G-3BJ3FNSC1K
-
 params:
   env: production
   profileMode:
