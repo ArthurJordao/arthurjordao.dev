@@ -5,4 +5,4 @@ description: I post that has no use :P
 ---
 Hello, this is the first post, you reached the end of all post congrats!
 
-![](screen-shot-2022-12-09-at-15.21.10.png)
+![Bad luck in the game, luck in kafka. It's the saying.](screen-shot-2022-12-09-at-15.21.10.png "A joke in portuguese")
