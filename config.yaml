@@ -56,5 +56,5 @@ languages:
       main:
         - name: About me
           url: /about
-
-
+        - name: Posts
+          url: /posts
