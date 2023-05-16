@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/arthurjordao
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://arthurjordao.dev
+  * I am arthurjordao (https://keybase.io/arthurjordao) on keybase.
+  * I have a public key ASB5MNRpBni4Xm_qGIvzb4T-5Y4vFbs-bzk3Z_EhdIhndQo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101527f308173f3fe11d78d501d93913db79b06b37c439ea24478577e863b69b6020a",
+      "host": "keybase.io",
+      "kid": "01207930d4690678b85e6fea188bf36f84fee58e2f15bb3e6f393767f121748867750a",
+      "uid": "023310c7fd5f45170b824969aac0a019",
+      "username": "arthurjordao"
+    },
+    "merkle_root": {
+      "ctime": 1684263888,
+      "hash": "c91f3beaad9982917eac91635f8ec43d9bf8ed0118aecc8eede406de4781df2fb5031d59849696c8d7dfd2184c23dcfbd9ed5a8f2f5c537efd95bc62f6cfa513",
+      "hash_meta": "466de05df52f8f7ef825825225f42287346672ace559453d83bb0128d9b968b2",
+      "seqno": 24460151
+    },
+    "service": {
+      "entropy": "d8x2PAh8botPE+Rq+vd4Fu3F",
+      "hostname": "arthurjordao.dev",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "6.0.4"
+  },
+  "ctime": 1684263976,
+  "expire_in": 504576000,
+  "prev": "518f3ebc2cd58f7762ef1639fee35bc727d669445a2617e35c4adf7e5da08597",
+  "seqno": 7,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgeTDUaQZ4uF5v6hiL82+E/uWOLxW7Pm85N2fxIXSIZ3UKp3BheWxvYWTESpcCB8QgUY8+vCzVj3di7xY5/uNbxyfWaURaJhfjXErffl2ghZfEIP5Hn5Vse9ZsRPxKTC+1DHCiWOyXTsL2g/rZp3/0vdZRAgHCo3NpZ8RAD/H/ev2oP2IAjPZNMLcOhVh4j9Wv/W+zbSr9DWP9M55y5Prh+KkuT20H3+pZ/ec4jL56dHsHDO1B2BOc9gDvD6hzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEILU34N+tCFXSIKrdADTW+MM+CEksU9GjwoBctwmqigM9o3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/arthurjordao
+
+==================================================================
