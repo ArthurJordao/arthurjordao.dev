@@ -62,11 +62,11 @@ windows:
         -
 ```
 
-In this configuration, I just have my default config for every project which is one window with the editor and another with server/workspace panels. Most of the time this works for me in 90% of the projects.
+In this configuration, I just have my default config for every project which is one window with the editor and another with server/workspace panels. This config works for me in 90% of the projects.
 
 Note that on the root I added an [erb](https://github.com/tmuxinator/tmuxinator#erb) syntax for passing the project directory.
 
-As I had this file, I just created a new `bash` command using `fzf`, that gets all the folders located under `~/dev/noredink` (my work dev directory), and `~/dev/personal` (my personal dev directory). After that, I piped it to fzf so I could select the project that I wanted to use.
+Using this configuration, I created a new `bash` command using `fzf`, that finds all the folders located under `~/dev/noredink` (my work dev directory), and `~/dev/personal` (my personal dev directory). After that, I piped it to `fzf` so I could select the project that I wanted to work on.
 
 If in the folder there is a `.tmuxinator.yml` I use the local config for the project, if not I use the default config and then I create a new tmux session using tmuxinator.
 
