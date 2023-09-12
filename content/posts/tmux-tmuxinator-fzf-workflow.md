@@ -66,7 +66,7 @@ In this configuration, I just have my default config for every project which is 
 
 Note that on the root I added an [erb](https://github.com/tmuxinator/tmuxinator#erb) syntax for passing the project directory.
 
-Using this configuration, I created a new `bash` command using `fzf`, that finds all the folders located under `~/dev/noredink` (my work dev directory), and `~/dev/personal` (my personal dev directory). After that, I piped it to `fzf` so I could select the project that I wanted to use.
+Using this configuration, I created a new `bash` command using `fzf`, that finds all the folders located under `~/dev/noredink` (my work dev directory), and `~/dev/personal` (my personal dev directory). After that, I piped it to `fzf` so I could select the project that I wanted to work on.
 
 If in the folder there is a `.tmuxinator.yml` I use the local config for the project, if not I use the default config and then I create a new tmux session using tmuxinator.
 
