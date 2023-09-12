@@ -9,6 +9,9 @@ minify:
   disableXML: false
   minifyOutput: true
 
+markup:
+    highlight:
+        noClasses: false
 params:
   env: production
   description: Arthur Jordão - Software made simple
