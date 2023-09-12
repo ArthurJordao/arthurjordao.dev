@@ -2,7 +2,7 @@
 author: Arthur Jordão
 title: Tmux + Tmuxinator + FZF workflow
 date: 2023-09-12T01:00:00.000Z
-description: A adventure for the perfect tmux workflow.
+description: An adventure for the perfect tmux workflow.
 tags:
   - tmux
   - dotfiles
