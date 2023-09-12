@@ -12,10 +12,10 @@ TocOpen: true
 I adopted tmux to my workflow recently and one of the things that I wanted on my workflow was the ability to create tmux sessions for projects that I was working on using a specific layout. Most often I found myself using the following layout:
 
 * Window 1 (editor)
-  		- nvim .
+  * nvim .
 * Window 2 (workspace vertical)
-  		- Server
-  		- Random commands workspace.
+  * Server
+  * Random commands workspace.
 
 Creating this tmux session was kind of boring. My flow was something like:
 
