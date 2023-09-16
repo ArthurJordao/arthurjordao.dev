@@ -22,7 +22,7 @@ Creating this tmux session was kind of boring. My flow was something like:
 * `cd` to the project.
 * Start `nvim` on the first window.
 * Create a new panel
-* Split the window in two panels.
+* Split the window into two panels.
 
 I thought well, I can optimize that!
 
