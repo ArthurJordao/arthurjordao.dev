@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: username/repo
+  repo: ArthurJordao/arthurjordao.dev
   branch: main # Branch to update (optional; defaults to master)
   base_url: https://arthurjordao.dev
   auth_endpoint: /api/auth
