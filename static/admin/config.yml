@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
-  branch: main
+  name: github
+  repo: username/repo
+  branch: main # Branch to update (optional; defaults to master)
+  base_url: https://arthurjordao.dev
+  auth_endpoint: /api/auth
 media_folder: "static/images" # Folder where user uploaded files should go
 public_folder: "images"
 collections:
