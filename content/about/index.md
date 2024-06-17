@@ -4,7 +4,7 @@ ShowToc: true
 author: Arthur Jordão
 title: About me
 date: 2023-02-22T03:00:00.000Z
-description: A ~~not so~~ useful description of myself
+description: A useful description of myself
 tags:
   - personal
   - career
