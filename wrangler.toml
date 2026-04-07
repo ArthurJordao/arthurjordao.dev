@@ -1,0 +1,6 @@
+name = "arthurjordao-dev"
+pages_build_output_dir = "public"
+
+[vars]
+HUGO_VERSION = "0.159.2"
+HUGO_ENVIRONMENT = "production"
