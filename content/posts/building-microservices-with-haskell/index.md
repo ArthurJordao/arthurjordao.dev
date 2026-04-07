@@ -4,8 +4,6 @@ date: 2026-04-07
 mermaid: true
 ---
 
-# Pragmatic Haskell: Building a Microservice Template That Actually Does Things
-
 I've been working with Haskell for the last 4 years at __NoRedink__ and for those
 years I find myself happy working with the language as it gives a
 powerful type system that helps me build code that (almost) doesn't break.
