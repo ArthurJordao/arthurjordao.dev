@@ -12,6 +12,9 @@ markup:
     highlight:
         noClasses: false
 params:
+  author:
+    name: Arthur Jordão
+    email: hi@arthurjordao.dev
   env: production
   description: Arthur Jordão - Software made simple
   profileMode:
