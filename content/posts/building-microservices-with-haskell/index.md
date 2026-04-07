@@ -20,17 +20,17 @@ So I built it.
 
 I started with a list of what I wanted to build:
 
-- *Component system*. I wanted stateful components to be initialized at startup,
+- **Component system**. I wanted stateful components to be initialized at startup,
 wired together explicitly, and allow them to be easily mocked on tests.
-- *Tracing*. Correlation IDs that are logged from when a process starts
+- **Tracing**. Correlation IDs that are logged from when a process starts
 to all its side effects on every service it touches.
-- *Http server*. To expose APIs with type-safe routing.
-- *Auth*. JWT-based, with scopes baked into the type system and allow services to
+- **Http server**. To expose APIs with type-safe routing.
+- **Auth**. JWT-based, with scopes baked into the type system and allow services to
 check scopes without external dependencies.
-- *Event system*. Services shouldn't call each other over HTTP as it will decrease
+- **Event system**. Services shouldn't call each other over HTTP as it will decrease
 overall system availability. Kafka keeps services decoupled and lets them evolve
 independently.
-- *Database*. Handle connection pooling, migration, repository pattern so we can
+- **Database**. Handle connection pooling, migration, repository pattern so we can
 keep SQL out of our domain logic.
 
 ## Reader over IO (RIO)
@@ -136,21 +136,20 @@ This produces a good pattern for logs as shown:
 
 ## HTTP
 
-On HTTP server I chose servant as a library to handle requests. Servant provided
-type safety on all endpoints and on the route declaration, context and auth middleware.
+For the HTTP server I chose Servant, which provides type safety on all endpoints,
+route declarations, context and auth middleware.
 
-On servant I wanted to have transparent access to RIO monad on handler, so I could
-easily declare a route and have all the stateful components on the handler side
-as such:
+I wanted transparent access to the RIO monad in handlers, so I could easily
+declare a route and have all the stateful components available:
 
 ```haskell
-    getAccountById ::
-      route
-        :- Summary "Get account by ID"
-          :> "accounts"
-          :> JWTAuth
-          :> Capture "id" Int64
-          :> Get '[JSON] Account,
+getAccountById ::
+  route
+    :- Summary "Get account by ID"
+      :> "accounts"
+      :> JWTAuth
+      :> Capture "id" Int64
+      :> Get '[JSON] Account,
 
 type Domain env = (HasLogFunc env, HasLogContext env, HasDB env, HasCorrelationId env)
 
@@ -197,11 +196,10 @@ correlationIdMiddleware app req respond = do
 
 ## Auth
 
-Note that the previous function also dealing with some JWT based authorization
-here:
+The previous handler also performs JWT-based authorization:
 
 ```haskell
-      authorize claims account
+authorize claims account
 ```
 
 This function comes from common auth library that is defined as such:
@@ -214,7 +212,7 @@ authorize claims resource =
 ```
 
 So the domain entity needs to implement `AccessPolicy` to know what scopes/identity
-the jwt needs to access a particular entity. This is an example were only admins
+the jwt needs to access a particular entity. This is an example where only admins
 and account owners can access an entity:
 
 ```haskell
@@ -271,8 +269,8 @@ This is simple enough for our case and integrates well with Servant.
 
 To increase overall availability on a distributed architecture async processing
 is recommended. If one service is unavailable when another service sends a message
-it won't affect the availability of the other service and the message will be eventually
-processed.
+it won't affect the availability of the other service and the message will eventually
+be processed.
 
 For this I chose Kafka. I wanted to have the same ergonomics as HTTP requests.
 Have CIDs on every message handled and propagate CIDs when needed. I won't show
@@ -326,15 +324,14 @@ The handler also has access to the env using the RIO monad and process the messa
 In case of failure processing the message after a set number of retries, the message
 is sent to a DLQ topic, which is consumed by the DLQ service.
 
-The DLQ service is a very simple service which will save the whole message details
-to a database, which will be available to a UI so a developer can check the message
-for debug and choose if the message should be reprocessed or dropped.
+The DLQ service saves the full message details to a database and exposes them
+through a UI so a developer can inspect the message and choose if it should be
+reprocessed or dropped.
 
 ## Database
 
 On the database side it uses `persistant` to handle SQL entities. This is a simple
-ORM style so we don't need to handle SQL manually, but I wanted to have some special
-tooling for debug. One thing I find useful is to know which correlation id performed
+ORM style so we don't need to handle SQL manually, but I wanted some extra tooling for debugging. One thing I find useful is to know which correlation id performed
 an action so we can easily find the logs related to that entity.
 
 ```haskell
@@ -352,9 +349,8 @@ SentNotification
 
 This is an entity declaration for SendNotification on the notification service.
 Note that this uses `persistWithMeta`. The implementation for this is a little trick,
-but in summary, this will add cid to the SQL table that is created with
-it and when saving it will get the information from the current env and save the
-CID metadata when saving.
+but in summary, this adds a cid column to the SQL table, and when saving a record
+it pulls the CID from the current env automatically.
 
 ## Misc
 
@@ -391,12 +387,11 @@ All services follow the same structure, organized around the domain:
     └── Spec.hs
 ```
 
-`Domain` is where the usecases live. `Ports` is where interactions with the
-external world live — the usecase calls them using domain model entities and the
-ports adapt them to external HTTP requests, Kafka messages, etc. `Types` is where
-we declare records used to communicate with other services. `DB` is where we
-declare database entities using the `persistent` library. `Settings` is where
-configuration lives — HTTP, Kafka, etc.
+- **`Domain`** — where the usecases live.
+- **`Ports`** — where interactions with the external world live. The usecase calls them using domain model entities and the ports adapt them to external HTTP requests, Kafka messages, etc.
+- **`Types`** — where we declare records used to communicate with other services.
+- **`DB`** — where we declare database entities using the `persistent` library.
+- **`Settings`** — where configuration lives: HTTP, Kafka, etc.
 
 One example is:
 
@@ -430,6 +425,8 @@ this makes it easy to debug any problems I could have on production.
 
 One of the most useful dashboards I made was the CID investigator, which is a query
 that lets you trace every part of a request since the initial call.
+
+![Grafana logs dashboard showing correlated log lines across services filtered by a single correlation ID](grafana-logs.webp)
 
 ### Testing
 
@@ -506,16 +503,24 @@ It has:
 - Deadletter queue management, so I can inspect and replay messages that failed during async processing.
 - Notifications that got sent to other users.
 
+![Dead letter queue management page showing failed messages with their topic, error and retry count](dlq-admin.webp)
+
+![Notifications page showing sent notifications with recipient and rendered template content](notification-admin.webp)
+
+![Users page showing registered users](users-admin.webp)
+
 ## How was the experience so far?
 
 Building this tooling was very satisfying for myself. I find that Haskell has
 a unique superpower: it gives you confidence on the type system so you know that
 what you built is probably going to work.
 
-Sadly, Haskell tooling is limited, library options are limited and some type
-errors are hard to figure out. Have that in mind if you want to explore Haskell.
+Sadly, Haskell tooling is limited, there isn't a ton of Haskell libraries as it
+has in more popular languages as Javascript. Type errors can be trick to figure
+out. Have that in mind if you want to explore Haskell.
 
 I am also sharing the code of this adventure as a reference, this is not a production
-ready code as it was mostly a fun project, but there is a lot to learn from this.
+ready code as it was mostly a project for fun, but there is a lot to learn from
+this.
 
 *Code: [github.com/arthurjordao/haskell-service-template](https://github.com/arthurjordao/haskell-service-template)*
