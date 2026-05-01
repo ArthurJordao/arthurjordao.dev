@@ -4,12 +4,12 @@ date: 2026-04-07
 mermaid: true
 ---
 
-I've been working with Haskell for the last 4 years at __NoRedink__ and for those
-years I find myself happy working with the language as it gives a
+I've been working with Haskell for the last 4 years at __NoRedink__ and over those
+years I've found myself happy working with the language. It has a
 powerful type system that helps me build code that (almost) doesn't break.
 
-But there is one thing: when it comes to personal projects I had no idea on
-how to start a new Haskell service from scratch. There was a lot of boilerplate
+But there is one thing: when it comes to personal projects I had no idea how
+to start a new Haskell service from scratch. There was a lot of boilerplate
 to write. At my job things are pretty straightforward as we have libraries
 that accelerate our development process, and I wanted something similar! So I
 had an idea: why not build my own common libraries for services?
@@ -26,7 +26,7 @@ wired together explicitly, and allow them to be easily mocked on tests.
 to all its side effects on every service it touches.
 - **Http server**. To expose APIs with type-safe routing.
 - **Auth**. JWT-based, with scopes baked into the type system and allow services to
-check scopes without external dependencies.
+checking scopes without external dependencies.
 - **Event system**. Services shouldn't call each other over HTTP as it will decrease
 overall system availability. Kafka keeps services decoupled and lets them evolve
 independently.
@@ -37,12 +37,12 @@ keep SQL out of our domain logic.
 
 There are a lot of ways you can handle IO in Haskell: effect system, stack monad
 transformers, tagless final, etc. But the one I really enjoy working with is
-RIO. RIO is reader monad (which allows you to read some state on an env),  that
+RIO. RIO is reader monad (which allows you to read some state in an env),  that
 also allows you to perform IO.
 
-You might be thinking what this means exactly? Well glad you asked.
+You might be wondering what this means exactly. Well, glad you asked.
 The state that a reader will have on the environment will be the stateful
-components of your system, such as databases, queues, http and other things
+components of your system, such as databases, queues, HTTP and other things
 that interact with the external world. While the IO will enable you to
 perform side effects.
 
@@ -75,13 +75,13 @@ listAccounts :: (HasLogFunc env, HasDB env, HasCorrelationId env) => RIO env [Ac
 
 ## Tracing
 
-Logs is one of the most useful ways to debug what is happening to your services
-in production. With distributed system it's hard to know what happens in each
+Logs are one of the most useful ways to debug what is happening to your services
+in production. With distributed systems it's hard to know what happens in each
 part of the processing. Multiple services can handle the same Kafka message and
 sometimes it's hard to follow.
 
 With this problem in mind I find it useful to create correlation ids
-which appends a new segment every interaction with a different service. To
+which append a new segment every interaction with a different service. To
 do that I made two small functions to generate CIDs.
 
 ```haskell
@@ -101,8 +101,8 @@ appendCorrelationId (CorrelationId existingCid) = do
 
 ```
 
-So correlation ids are logged in every service interaction I also added to the
-log context on the environment. Note that `HasLogContext` is where CID is saved.
+So that correlation IDs are logged in every service interaction, I also added them to the
+log context in the environment. Note that `HasLogContext` is where the CID is saved.
 
 ```haskell
 formatContext :: Map Text Text -> Utf8Builder
@@ -140,7 +140,9 @@ For the HTTP server I chose Servant, which provides type safety on all endpoints
 route declarations, context and auth middleware.
 
 I wanted transparent access to the RIO monad in handlers, so I could easily
-declare a route and have all the stateful components available:
+declare a route and have all the stateful components available.
+
+Routes are declared as Servant types, describing the path, auth, and response shape:
 
 ```haskell
 getAccountById ::
@@ -150,11 +152,19 @@ getAccountById ::
       :> JWTAuth
       :> Capture "id" Int64
       :> Get '[JSON] Account,
+```
 
+The `Domain` alias bundles the typeclasses a handler typically needs, keeping signatures readable:
+
+```haskell
 type Domain env = (HasLogFunc env, HasLogContext env, HasDB env, HasCorrelationId env)
+```
 
+The handler implementation then uses `Domain env` as a single constraint to access logging, the database, and the correlation ID from the environment:
+
+```haskell
 getAccountById :: Domain env => Int64 -> AccessTokenClaims -> RIO env Account
-getAccount accId claims = do
+getAccountById accId claims = do
   logInfoC $ "Getting account: " <> displayShow accId
   mAccount <- Repo.findAccountById accId
   case mAccount of
@@ -202,7 +212,7 @@ The previous handler also performs JWT-based authorization:
 authorize claims account
 ```
 
-This function comes from common auth library that is defined as such:
+This function comes from the common auth library that is defined as such:
 
 ```haskell
 authorize :: (AccessPolicy r, MonadIO m, MonadThrow m) => AccessTokenClaims -> r -> m ()
@@ -330,8 +340,8 @@ reprocessed or dropped.
 
 ## Database
 
-On the database side it uses `persistant` to handle SQL entities. This is a simple
-ORM style so we don't need to handle SQL manually, but I wanted some extra tooling for debugging. One thing I find useful is to know which correlation id performed
+On the database side it uses `persistent` to handle SQL entities. This is a simple
+ORM-style library so we don't need to handle SQL manually, but I wanted some extra tooling for debugging. One thing I find useful is to know which correlation id performed
 an action so we can easily find the logs related to that entity.
 
 ```haskell
@@ -347,8 +357,8 @@ SentNotification
   |]
 ```
 
-This is an entity declaration for SendNotification on the notification service.
-Note that this uses `persistWithMeta`. The implementation for this is a little trick,
+This is an entity declaration for SentNotification on the notification service.
+Note that this uses `persistWithMeta`. The implementation for this is a little tricky,
 but in summary, this adds a cid column to the SQL table, and when saving a record
 it pulls the CID from the current env automatically.
 
@@ -387,11 +397,11 @@ All services follow the same structure, organized around the domain:
     └── Spec.hs
 ```
 
-- **`Domain`** — where the usecases live.
-- **`Ports`** — where interactions with the external world live. The usecase calls them using domain model entities and the ports adapt them to external HTTP requests, Kafka messages, etc.
-- **`Types`** — where we declare records used to communicate with other services.
-- **`DB`** — where we declare database entities using the `persistent` library.
-- **`Settings`** — where configuration lives: HTTP, Kafka, etc.
+- **`Domain`**: where the usecases live.
+- **`Ports`**: where interactions with the external world live. The usecase calls them using domain model entities and the ports adapt them to external HTTP requests, Kafka messages, etc.
+- **`Types`**: where we declare records used to communicate with other services.
+- **`DB`**: where we declare database entities using the `persistent` library.
+- **`Settings`**: where configuration lives: HTTP, Kafka, etc.
 
 One example is:
 
@@ -421,7 +431,7 @@ findAccountById accId = do
 ### Monitoring
 
 I set up Grafana/Loki/Prometheus to have service metrics and logs visualization,
-this makes it easy to debug any problems I could have on production.
+this makes it easy to debug any problems I could have in production.
 
 One of the most useful dashboards I made was the CID investigator, which is a query
 that lets you trace every part of a request since the initial call.
@@ -430,7 +440,7 @@ that lets you trace every part of a request since the initial call.
 
 ### Testing
 
-RIO pattern allows you to mock every component of the APP, so if your function
+The RIO pattern allows you to mock every component of the App, so if your function
 depends on a `HasDB env`, you can build an APP that implements this and test your
 function.
 
@@ -515,8 +525,8 @@ Building this tooling was very satisfying for myself. I find that Haskell has
 a unique superpower: it gives you confidence on the type system so you know that
 what you built is probably going to work.
 
-Sadly, Haskell tooling is limited, there isn't a ton of Haskell libraries as it
-has in more popular languages as Javascript. Type errors can be trick to figure
+Sadly, Haskell tooling is limited, there isn't a ton of Haskell libraries as there are
+in more popular languages such as JavaScript. Type errors can be tricky to figure
 out. Have that in mind if you want to explore Haskell.
 
 I am also sharing the code of this adventure as a reference, this is not a production
