@@ -39,6 +39,11 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 <meta content={siteTitle} name="title" />
 <meta content={description} name="description" />
 <meta content={siteConfig.author} name="author" />
+{
+	siteConfig.fediverseCreator && (
+		<meta content={siteConfig.fediverseCreator} name="fediverse:creator" />
+	)
+}
 
 {/* Open Graph / Facebook */}
 <meta content={articleDate ? "article" : "website"} property="og:type" />

@@ -4,9 +4,11 @@ export interface SiteConfig {
 		options: Intl.DateTimeFormatOptions;
 	};
 	description: string;
+	/** Fediverse handle, so Mastodon credits the author on link previews. */
+	fediverseCreator?: string;
 	lang: string;
-  ogLocale: string;
-  showLogo: boolean;
+	ogLocale: string;
+	showLogo: boolean;
 	title: string;
 	url: string;
 }

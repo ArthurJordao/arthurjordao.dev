@@ -15,11 +15,12 @@ export const siteConfig: SiteConfig = {
 	author: "Arthur Jordão",
 	// Used as the default description meta property and webmanifest description
 	description: "Arthur Jordão - Software made simple",
+	fediverseCreator: "@arthurjordao@bolha.us",
 	// HTML lang property, found in src/layouts/Base.astro L:18 & astro.config.ts L:48
 	lang: "en-US",
 	// Meta property, found in src/components/BaseHead.astro L:42
-  ogLocale: "en_US",
-  // Determines whether to show the logo in the templates header
+	ogLocale: "en_US",
+	// Determines whether to show the logo in the templates header
 	showLogo: false,
 	// Date.prototype.toLocaleDateString() parameters, found in src/utils/date.ts.
 	date: {
