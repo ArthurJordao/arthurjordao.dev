@@ -1,0 +1,23 @@
+# Routes served by the Hugo + PaperMod site, captured 2026-09-08 before migration.
+# Reference only — check-routes.sh compares against expected-routes.txt.
+/
+/about/
+/admin/
+/categories/
+/posts/
+/posts/building-microservices-with-haskell/
+/posts/page/1/
+/posts/tmux-tmuxinator-fzf-workflow/
+/tags/
+/tags/career/
+/tags/career/page/1/
+/tags/dotfiles/
+/tags/dotfiles/page/1/
+/tags/personal/
+/tags/personal/page/1/
+/tags/productivity/
+/tags/productivity/page/1/
+/tags/resume/
+/tags/resume/page/1/
+/tags/tmux/
+/tags/tmux/page/1/

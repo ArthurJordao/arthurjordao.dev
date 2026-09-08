@@ -1,0 +1,10 @@
+/
+/about/
+/posts/
+/posts/building-microservices-with-haskell/
+/posts/tmux-tmuxinator-fzf-workflow/
+/tags/
+/tags/dotfiles/
+/tags/haskell/
+/tags/productivity/
+/tags/tmux/
