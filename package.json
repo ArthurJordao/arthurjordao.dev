@@ -40,6 +40,7 @@
 		"@astrojs/check": "^0.9.9",
 		"@biomejs/biome": "^2.5.1",
 		"@iconify-json/mdi": "^1.2.2",
+		"@iconify-json/simple-icons": "^1.2.95",
 		"@pagefind/default-ui": "^1.5.2",
 		"@tailwindcss/typography": "^0.5.20",
 		"@types/hast": "^3.0.4",

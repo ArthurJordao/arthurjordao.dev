@@ -22,6 +22,11 @@ const socialLinks: {
 	{ friendlyName: "LinkedIn", link: "https://linkedin.com/in/arthurjordao/", name: "mdi:linkedin" },
 	{ friendlyName: "Instagram", link: "https://instagram.com/arthurbjordao", name: "mdi:instagram" },
 	{ friendlyName: "Mastodon", link: "https://bolha.us/@arthurjordao", name: "mdi:mastodon" },
+	{
+		friendlyName: "Bluesky",
+		link: "https://bsky.app/profile/arthurjordao.dev",
+		name: "simple-icons:bluesky",
+	},
 	{ friendlyName: "Keybase", link: "https://keybase.io/arthurjordao", name: "mdi:key-variant" },
 	{ friendlyName: "Email", link: "mailto:hi@arthurjordao.dev", name: "mdi:email" },
 ];
@@ -36,7 +41,7 @@ const socialLinks: {
 					<a
 						class="hover:text-link inline-block"
 						href={link}
-						rel={`noreferrer ${isWebmention ? "me authn" : ""}`}
+						rel={`me noopener noreferrer${isWebmention ? " authn" : ""}`}
 						target="_blank"
 					>
 						<Icon aria-hidden="true" class="h-8 w-8" focusable="false" name={name} />
