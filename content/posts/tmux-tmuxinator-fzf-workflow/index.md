@@ -114,4 +114,9 @@ bind-key -r f run-shell "tmux neww ~/.local/bin/tmux-sessionizer"
 
 Result:
 
-![A video showing  the command being executed, creating a new tmux session](output.webp)
+<figure>
+  <video autoplay loop muted playsinline preload="metadata" width="1462" height="948" poster="/videos/tmux-workflow-poster.webp" aria-label="A video showing the command being executed, creating a new tmux session">
+    <source src="/videos/tmux-workflow.webm" type="video/webm" />
+    <source src="/videos/tmux-workflow.mp4" type="video/mp4" />
+  </video>
+</figure>
