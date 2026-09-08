@@ -23,11 +23,20 @@ const pinnedPosts = allPostsByDate
 
 <PageLayout meta={{ title: "Home" }}>
 	<section>
-		<h1 class="title mb-12">Hello World!</h1>
+		<img
+			alt="Arthur Jordão"
+			class="mb-8 h-32 w-32 rounded-full"
+			height="128"
+			loading="eager"
+			src="/images/pp.webp"
+			width="128"
+		/>
+		<h1 class="title mb-4">Arthur Jordão</h1>
+		<p class="text-accent mb-6 text-lg">Software made simple</p>
 		<p class="mb-4">
-			Hi, I’m a theme for Astro, a simple starter that you can use to create your website or blog.
-			If you want to know more about how you can customise me, add more posts, and make it your own,
-			click on the GitHub icon link below and it will take you to my repo.
+			I’m a software engineer at NoRedInk, working mostly in Haskell. I care about functional
+			programming, good abstractions, and building things that stay simple as they grow. Read more
+			<a class="cactus-link" href="/about/">about me</a>.
 		</p>
 		<SocialList />
 	</section>
