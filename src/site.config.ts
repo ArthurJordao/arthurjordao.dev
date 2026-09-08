@@ -26,6 +26,10 @@ export const siteConfig: SiteConfig = {
 		options: {
 			day: "numeric",
 			month: "short",
+			// Post dates are authored as calendar days, so format them in UTC.
+			// Without this a date like 2026-04-07 renders as "Apr 6" for every
+			// reader west of Greenwich.
+			timeZone: "UTC",
 			year: "numeric",
 		},
 	},
