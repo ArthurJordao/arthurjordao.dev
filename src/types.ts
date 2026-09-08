@@ -6,6 +6,8 @@ export interface SiteConfig {
 	description: string;
 	/** Fediverse handle, so Mastodon credits the author on link previews. */
 	fediverseCreator?: string;
+	/** Twitter/X handle, so cards credit the author. */
+	twitterCreator?: string;
 	lang: string;
 	ogLocale: string;
 	showLogo: boolean;

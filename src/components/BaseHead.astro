@@ -70,6 +70,15 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 <meta content={title} property="twitter:title" />
 <meta content={description} property="twitter:description" />
 <meta content={socialImageURL} property="twitter:image" />
+{
+	siteConfig.twitterCreator && (
+		<>
+			{/* Twitter's spec documents name=, not property=, for these two. */}
+			<meta content={siteConfig.twitterCreator} name="twitter:creator" />
+			<meta content={siteConfig.twitterCreator} name="twitter:site" />
+		</>
+	)
+}
 
 {/* Sitemap */}
 <link href="/sitemap-index.xml" rel="sitemap" />
