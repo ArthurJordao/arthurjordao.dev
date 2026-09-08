@@ -16,6 +16,27 @@ const { ogImage, title, description, updatedDate, publishDate } = post.data;
 const socialImage = ogImage ?? `/og-image/${post.id}.png`;
 const articleDate = updatedDate?.toISOString() ?? publishDate.toISOString();
 const { headings, remarkPluginFrontmatter } = await render(post);
+// Expressive Code renders a ```mermaid fence as
+//   <div class="expressive-code"><figure class="frame"><pre data-language="mermaid">
+// with one <div class="ec-line"> per line, so textContent alone would lose the
+// newlines mermaid needs to parse the diagram.
+const mermaidScript = `
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
+
+for (const pre of document.querySelectorAll('pre[data-language="mermaid"]')) {
+	const lines = pre.querySelectorAll('.ec-line');
+	const source = lines.length
+		? Array.from(lines, (line) => line.textContent).join('\\n')
+		: pre.textContent;
+	const el = document.createElement('div');
+	el.className = 'mermaid';
+	el.textContent = source;
+	(pre.closest('.expressive-code') ?? pre).replaceWith(el);
+}
+
+await mermaid.run();
+`;
 const readingTime: string = remarkPluginFrontmatter.readingTime;
 ---
 
@@ -39,6 +60,7 @@ const readingTime: string = remarkPluginFrontmatter.readingTime;
 			</div>
 		</div>
 	</article>
+	{post.data.mermaid && <script is:inline set:html={mermaidScript} type="module" />}
 	<button
 		class="hover:border-link fixed end-4 bottom-8 z-90 flex h-10 w-10 translate-y-28 cursor-pointer items-center justify-center rounded-full border-2 border-transparent bg-zinc-200 text-3xl opacity-0 transition-all transition-discrete duration-300 data-[show=true]:translate-y-0 data-[show=true]:opacity-100 sm:end-8 sm:h-12 sm:w-12 dark:bg-zinc-700"
 		data-show="false"
