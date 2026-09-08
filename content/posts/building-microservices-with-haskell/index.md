@@ -1,6 +1,9 @@
 ---
-title: "Pragmatic Haskell: Building a Microservice Template That Actually Does Things"
-date: 2026-04-07
+title: "Pragmatic Haskell: Building a Microservice Template"
+description: "Why starting a Haskell service from scratch felt harder than it should, and the template of common libraries I built to fix it."
+publishDate: 2026-04-07
+tags:
+  - haskell
 mermaid: true
 ---
 

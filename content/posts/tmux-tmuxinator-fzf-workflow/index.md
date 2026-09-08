@@ -1,13 +1,11 @@
 ---
-author: Arthur Jordão
 title: Tmux + Tmuxinator + FZF workflow
-date: 2023-09-12T01:00:00.000Z
 description: An adventure for the perfect tmux workflow.
+publishDate: 2023-09-12T01:00:00.000Z
 tags:
   - tmux
   - dotfiles
   - productivity
-TocOpen: true
 ---
 I adopted tmux to my workflow recently and one of the things that I wanted on my workflow was the ability to create tmux sessions for projects that I was working on using a specific layout. Most often I found myself using the following layout:
 
