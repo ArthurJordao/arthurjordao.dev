@@ -43,16 +43,15 @@ Nothing else is written by hand. From that one file, a template run generates:
 
 - **DNS records** for every host and every service name
 - **The reverse proxy configuration**, including which internal port each name maps to
-- **SSH config blocks**, so `ssh <name>` resolves for every machine including the ones I do not
-  manage
-- **The architecture diagrams**, which is how I know the diagrams are never stale
+- **SSH config blocks**, so `ssh <name>` resolves for every machine — including the ones I do not
+  otherwise manage, which are in the inventory purely so they get a name and an SSH entry
 
-That last one sounds like a flourish and is not. A diagram maintained by hand is a diagram that
-lies within a month. If it is generated from the same data that generates the DNS, it is either
-correct or the whole apply failed.
+The property that makes this worth the setup is that there is **nowhere to forget**. Those are three
+different systems, in three different config formats, that all have to agree about what a machine is
+called and where it lives. Kept by hand, they agree until the first time you are in a hurry. Derived
+from one file, disagreeing is not a state they can be in.
 
-Adding a machine means adding its stanza and applying. The name resolves, SSH knows it, the diagram
-grows a node.
+Adding a machine means adding its stanza and applying. The name resolves and SSH knows it.
 
 ## Real certificates for names that never face the internet
 
