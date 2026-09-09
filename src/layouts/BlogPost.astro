@@ -32,7 +32,10 @@ for (const pre of document.querySelectorAll('pre[data-language="mermaid"]')) {
 	const el = document.createElement('div');
 	el.className = 'mermaid';
 	el.textContent = source;
-	(pre.closest('.expressive-code') ?? pre).replaceWith(el);
+	// Replace only the <figure>. Expressive Code injects its stylesheet and script
+	// into the FIRST .expressive-code wrapper on the page, so replacing that wrapper
+	// strips the CSS from every code block after it whenever a diagram comes first.
+	(pre.closest('figure') ?? pre).replaceWith(el);
 }
 
 await mermaid.run();
