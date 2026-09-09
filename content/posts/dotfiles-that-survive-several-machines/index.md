@@ -1,7 +1,7 @@
 ---
 title: "Dotfiles that survive several machines"
 description: "Symlinks work until the second machine is not like the first. What replaces them is not a better symlink — it is describing your machines as data, and then validating that description."
-publishDate: 2026-09-09
+publishDate: 2027-01-05
 tags:
   - dotfiles
   - chezmoi

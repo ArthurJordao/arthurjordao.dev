@@ -1,7 +1,7 @@
 ---
 title: "Leaving tmuxinator for WezTerm's multiplexer"
 description: "The workflow did not change at all. Four glued-together tools became one Lua file, with the same keybinding and the same search paths — and the trade was real."
-publishDate: 2026-09-09
+publishDate: 2026-11-03
 tags:
   - tmux
   - wezterm

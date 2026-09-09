@@ -1,7 +1,7 @@
 ---
 title: "Notes that cross tools, accounts and machines"
 description: "No AI vendor has a reason to make your context readable by a competitor, or to cross the line between your work and personal accounts. So I stopped waiting and hosted it myself."
-publishDate: 2026-09-09
+publishDate: 2026-10-06
 tags:
   - ai
   - mcp

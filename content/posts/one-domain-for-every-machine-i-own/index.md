@@ -1,7 +1,7 @@
 ---
 title: "One domain for every machine I own"
 description: "Every computer in my house has a name under my own domain, every service has a real TLS certificate, and both work the same from the sofa or a hotel. One data file describes it; everything else is generated."
-publishDate: 2026-09-09
+publishDate: 2026-12-01
 tags:
   - selfhost
   - dns
