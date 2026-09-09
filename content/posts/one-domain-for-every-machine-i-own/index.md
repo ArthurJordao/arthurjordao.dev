@@ -46,6 +46,29 @@ Nothing else is written by hand. From that one file, a template run generates:
 - **SSH config blocks**, so `ssh <name>` resolves for every machine — including the ones I do not
   otherwise manage, which are in the inventory purely so they get a name and an SSH entry
 
+One host's entry, trimmed:
+
+```yaml title=".chezmoidata/hosts.yaml"
+mars:
+  roles: [podman, dev, gaming, samba]
+  os: linux
+  ip:
+    lan: 192.168.1.23
+    tailscale: 100.64.0.23
+
+  endpoints:
+    # Has a port, so it gets a proxy block and a certificate
+    - {name: sunshine, port: 47990, scheme: https}
+
+    # No port: SMB is not HTTP, so there is no proxy.
+    # Reached directly at files.mydomain.com:445
+    - {name: files, probe_port: 445}
+```
+
+That is the whole input. How it becomes four different configuration formats, how the file is
+validated before anything is applied, and how secrets get in without living in the repository is a
+subject of its own — and a longer post than this one.
+
 The property that makes this worth the setup is that there is **nowhere to forget**. Those are three
 different systems, in three different config formats, that all have to agree about what a machine is
 called and where it lives. Kept by hand, they agree until the first time you are in a hurry. Derived
