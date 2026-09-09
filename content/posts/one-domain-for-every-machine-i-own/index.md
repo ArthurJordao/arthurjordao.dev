@@ -204,9 +204,20 @@ works, and none of it is the interesting part.
 
 ## What it costs
 
-**It is one box, and it is both the DNS and the edge.** If it is down, name resolution in the house
-is down — which is a worse failure than a service being down, because everything looks broken at
-once.
+**It is one box, and it is both the DNS and the edge.** If it dies, everything on it dies together:
+the containers, the reverse proxy, the tunnel. That is the real cost of consolidating, and I accept
+it because the alternative is two boxes to maintain.
+
+**But do put a public resolver as the secondary on your router.** Mine points at `1.1.1.1`. It is
+one setting and it changes the shape of the failure completely: without it, my DNS going down takes
+the whole house off the internet, which is the kind of outage someone else in the flat notices
+immediately. With it, the internal names stop resolving and everything else carries on. The services
+are unreachable either way — they are on the box that died — so losing their names costs nothing
+extra.
+
+Worth knowing that failover between resolvers is not instant or uniform across clients; some will
+sit through a timeout first. It degrades rather than switching cleanly, which is still a much better
+failure than going dark.
 
 **The fallback taught me something about redundancy.** The board is dual-homed, wired preferred,
 wifi as backup. Unplug the cable and it still reaches out perfectly well over wifi — but every DNS
