@@ -98,7 +98,7 @@ is a fact the CLI knows about seconds later.
 The MCP server binds to loopback only. Nothing reaches it except the reverse proxy, which is
 therefore the only place a token needs checking:
 
-```nginx
+```txt title="Caddyfile"
 notes.example.com {
     @unauth not header Authorization "Bearer {$NOTES_TOKEN}"
     respond @unauth 401

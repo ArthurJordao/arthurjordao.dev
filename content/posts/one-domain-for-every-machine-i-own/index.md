@@ -70,7 +70,7 @@ every machine I own is simply happy.
 
 My reverse proxy holds the API token for the DNS provider and does the whole dance itself.
 
-```nginx
+```txt title="Caddyfile"
 books.mydomain.com {
     reverse_proxy 127.0.0.1:8083
 }
