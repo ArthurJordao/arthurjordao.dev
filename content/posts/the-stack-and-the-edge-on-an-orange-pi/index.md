@@ -145,8 +145,8 @@ Every container is a generated unit file, every host is described by a data file
 against a schema before anything is applied, and there are consistency checks that fail loudly when
 two parts of the description disagree. A typo becomes an error before it becomes a broken machine.
 
-That is the actual reason a $40 board is enough: **the box is disposable because the description of
-the box is not.** If it dies tomorrow I flash a card, run one command, and wait. Every hardware
+That is the actual reason a board this small is enough: **the box is disposable because the
+description of the box is not.** If it dies tomorrow I flash a card, run one command, and wait. Every hardware
 verdict in this post is written down in my notes, measured once, so I never re-derive it.
 
 The board is not what makes this work. Being able to rebuild it is.

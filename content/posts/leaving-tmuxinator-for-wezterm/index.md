@@ -89,10 +89,29 @@ it for turned out to be a built-in.
 Workspace reuse works the way tmux sessions did: if a workspace with that name already exists,
 switch to it; otherwise build it. Idempotent, so mashing the key is safe.
 
-> **TODO before publishing:** the one thing only I can write. What actually made me switch —
-> whether it was adopting WezTerm for other reasons and noticing the multiplexer afterwards, or
-> going looking for this. The structural argument above is true either way, but the honest personal
-> trigger belongs here and I should not let a tidy narrative stand in for it.
+## What actually made me switch
+
+None of the above. The tidy argument about dependency counts is real, but it is not what moved me —
+I noticed it afterwards, while writing this.
+
+What moved me is that **tmux is a layer between the program and the terminal, and a layer can only
+pass through what it understands.** Every capability my terminal grew that tmux had no concept of
+was a capability I did not have while working inside tmux, which was all of the time.
+
+Image rendering is the clearest case. A terminal that can draw an image is useless to you if
+everything you run is inside a multiplexer that has no representation for one. Same story for other
+newer escape sequences: the multiplexer has to learn each one before anything running under it can
+use it, and that is a permanent lag by construction.
+
+So the honest framing is the reverse of how these posts usually go. I did not find a better
+multiplexer. I wanted things the terminal could already do, discovered that my multiplexer was what
+stood between me and them, and only then went looking at whether I could get my workflow back
+without it.
+
+That reframes the dependency argument into something sharper than I first wrote. tmux was not just
+*requiring* three helper tools to be pleasant — it was simultaneously *blocking* features I wanted.
+Paying a maintenance cost for a layer that also takes capabilities away is a much easier decision
+than choosing between two roughly equal tools.
 
 ## What I lost, and it is not nothing
 
