@@ -41,7 +41,7 @@ for (const position of cv.positions) {
 		"",
 		`### ${position.company}`,
 		`Title: ${position.title}`,
-		`Dates: ${formatMonth(position.start)} — ${end}`,
+		`Dates: ${formatMonth(position.start)} - ${end}`,
 		`Location: ${position.location}`,
 		"",
 		position.summary,
@@ -54,7 +54,7 @@ for (const position of cv.positions) {
 
 lines.push("", "## EDUCATION");
 for (const entry of cv.education) {
-	lines.push(`${entry.institution} — ${entry.qualification} (${entry.start} — ${entry.end})`);
+	lines.push(`${entry.institution} — ${entry.qualification} (${entry.start} - ${entry.end})`);
 }
 
 lines.push("", "## SKILLS");

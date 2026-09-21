@@ -21,8 +21,13 @@ const formatMonth = (month: string) =>
 		year: "numeric",
 	});
 
+/**
+ * A plain hyphen, not an em dash: this string is a date range, and the
+ * applicant tracking systems that parse a CV look for "-", "to" or an en
+ * dash. An em dash often leaves the role with no period attached at all.
+ */
 const range = (start: string, end: string | null) =>
-	`${formatMonth(start)} — ${end ? formatMonth(end) : "Present"}`;
+	`${formatMonth(start)} - ${end ? formatMonth(end) : "Present"}`;
 
 /** Strip the scheme so a link reads as a label rather than a URL bar. */
 const short = (url: string) => url.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "");
@@ -61,7 +66,7 @@ const short = (url: string) => url.replace(/^https:\/\/(www\.)?/, "").replace(/\
 							<span class="cv-entry-dates">{range(position.start, position.end)}</span>
 						</div>
 						<p class="cv-entry-where">
-							{position.company} · {position.location}
+							{position.company}, {position.location}
 						</p>
 						<p class="cv-entry-summary">{position.summary}</p>
 						<ul class="cv-bullets">
@@ -82,7 +87,7 @@ const short = (url: string) => url.replace(/^https:\/\/(www\.)?/, "").replace(/\
 						<div class="cv-entry-head">
 							<h3 class="cv-entry-role">{entry.qualification}</h3>
 							<span class="cv-entry-dates">
-								{entry.start} — {entry.end}
+								{entry.start} - {entry.end}
 							</span>
 						</div>
 						<p class="cv-entry-where">{entry.institution}</p>

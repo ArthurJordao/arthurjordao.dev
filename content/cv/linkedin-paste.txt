@@ -12,7 +12,7 @@ Self-taught software engineer. Four years writing Haskell in production at NoRed
 
 ### NoRedInk
 Title: Software Engineer II
-Dates: April 2022 — Present
+Dates: April 2022 - Present
 Location: Remote
 
 Education software for classroom writing.
@@ -29,7 +29,7 @@ Skills: Haskell, Elm, Ruby on Rails, PostgreSQL, MySQL, Snowflake, Datadog
 
 ### Nubank
 Title: Senior Software Engineer
-Dates: July 2019 — April 2022
+Dates: July 2019 - April 2022
 Location: São Paulo, Brazil
 
 Lending team, on the services that issue and service credit.
@@ -44,7 +44,7 @@ Skills: Clojure, ClojureScript, Kafka, Elasticsearch, Datomic, Kubernetes, Graph
 
 ### Catho
 Title: Software Engineer
-Dates: May 2018 — June 2019
+Dates: May 2018 - June 2019
 Location: Barueri, Brazil
 
 Billing systems for a job board.
@@ -56,7 +56,7 @@ Skills: PHP, Java, RabbitMQ, Jenkins, JavaScript
 
 ### Accenture
 Title: Software Engineer
-Dates: November 2017 — May 2018
+Dates: November 2017 - May 2018
 Location: São Paulo, Brazil
 
 Fraud detection, on the advanced technology and architecture team.
@@ -67,7 +67,7 @@ Fraud detection, on the advanced technology and architecture team.
 Skills: Java, AWS Lambda, DynamoDB, SQS, SNS, API Gateway
 
 ## EDUCATION
-UNINOVE — Technologist, Systems Analysis and Development (2017 — 2019)
+UNINOVE — Technologist, Systems Analysis and Development (2017 - 2019)
 
 ## SKILLS
 Haskell
