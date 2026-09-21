@@ -38,6 +38,12 @@ export interface PaginationLink {
 export interface SiteMeta {
 	articleDate?: string | undefined;
 	description?: string;
+	/**
+	 * Emits <meta name="robots" content="noindex, follow">. For pages that
+	 * exist for navigation rather than for a reader arriving from a search:
+	 * they stay crawlable, and the links on them still carry weight.
+	 */
+	noindex?: boolean | undefined;
 	ogImage?: string | undefined;
 	/**
 	 * Used verbatim as <title> instead of "<title> • <site title>". The home

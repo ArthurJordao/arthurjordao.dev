@@ -28,7 +28,10 @@ export default defineConfig({
 	integrations: [
 		expressiveCode(expressiveCodeOptions),
 		icon(),
-		sitemap(),
+		// Tag pages are navigation, not destinations: each lists a post or two
+		// and is otherwise template. Submitting them asks Google to index pages
+		// it is right to refuse, so they stay crawlable but out of the sitemap.
+		sitemap({ filter: (page) => !page.includes("/tags/") }),
 		mdx(),
 		robotsTxt(),
 		webmanifest({

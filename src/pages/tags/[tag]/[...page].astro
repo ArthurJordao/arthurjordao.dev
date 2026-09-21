@@ -32,6 +32,7 @@ const TagContent = tagMeta ? (await render(tagMeta)).Content : null;
 
 const meta = {
 	description: tagMeta?.data.description ?? `View all posts with the tag - ${tag}`,
+	noindex: true,
 	title: tagMeta?.data.title ?? `Posts about ${tag}`,
 };
 

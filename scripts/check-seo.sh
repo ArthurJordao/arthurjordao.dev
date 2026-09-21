@@ -104,6 +104,22 @@ done < <(find "$DIST" -name index.html)
 
 [ "$failures" -eq 0 ] && echo "OK: structured data on $pages_with_schema pages, all URLs absolute"
 
+# --- thin tag pages stay out of the sitemap and out of the index ----------
+if [ -f "$sitemap" ] && grep -q '<loc>[^<]*/tags/' "$sitemap"; then
+  fail "sitemap lists tag pages, which are too thin to ask Google to index"
+else
+  echo "OK: sitemap omits the tag pages"
+fi
+
+missing_noindex=0
+while IFS= read -r page; do
+  grep -q 'name="robots"' "$page" || {
+    fail "no robots meta on $page"
+    missing_noindex=$((missing_noindex + 1))
+  }
+done < <(find "$DIST/tags" -name index.html 2>/dev/null)
+[ "$missing_noindex" -eq 0 ] && echo "OK: tag pages carry a robots meta"
+
 # --- home <title> must lead with the name, not "Home" ---------------------
 home_title=$(sed -n 's/.*<title>\([^<]*\)<\/title>.*/\1/p' "$DIST/index.html")
 case "$home_title" in

@@ -12,7 +12,7 @@ interface Props {
 }
 
 const {
-	meta: { articleDate, description = siteConfig.description, ogImage, seoTitle, title },
+	meta: { articleDate, description = siteConfig.description, noindex, ogImage, seoTitle, title },
 } = Astro.props;
 ---
 
@@ -21,6 +21,7 @@ const {
 		<BaseHead
 			articleDate={articleDate}
 			description={description}
+			noindex={noindex}
 			ogImage={ogImage}
 			seoTitle={seoTitle}
 			title={title}

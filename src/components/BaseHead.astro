@@ -7,7 +7,7 @@ import "@/styles/global.css";
 
 type Props = SiteMeta;
 
-const { articleDate, description, ogImage, seoTitle, title } = Astro.props;
+const { articleDate, description, noindex, ogImage, seoTitle, title } = Astro.props;
 
 const titleSeparator = "•";
 // `seoTitle` wins outright, so a page can own its whole <title> rather than be
@@ -36,6 +36,9 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 		</>
 	)
 }
+
+{/* Thin aggregation pages ask not to be indexed, but stay crawlable */}
+{noindex && <meta content="noindex, follow" name="robots" />}
 
 {/* Canonical URL */}
 <link href={canonicalURL} rel="canonical" />
