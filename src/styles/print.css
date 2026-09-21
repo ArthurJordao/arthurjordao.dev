@@ -38,13 +38,36 @@
 		display: none;
 	}
 
-	/* A job must not straddle a page break. */
+	/* Let a long role flow across a page break; what must never split is the
+	   header that identifies it. Forbidding the break on the whole entry looks
+	   tidier in principle and wastes half a page in practice: a tall role that
+	   does not fit the remainder gets pushed whole to the next page. */
 	.cv-entry {
+		break-inside: auto;
+	}
+
+	.cv-entry-head {
 		break-inside: avoid;
 	}
 
+	/* Never strand a heading, a role title or a company line at the foot of a
+	   page with its content overleaf. */
+	.cv-section-title,
+	.cv-entry-head,
+	.cv-entry-where,
 	h2 {
 		break-after: avoid;
+	}
+
+	/* Chips belong to the role above them. */
+	.cv-tech {
+		break-before: avoid;
+	}
+
+	p,
+	dd {
+		orphans: 3;
+		widows: 3;
 	}
 
 	/* On paper a link is only useful if its target is printed with it. Scoped
