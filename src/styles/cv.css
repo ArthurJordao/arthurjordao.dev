@@ -1,14 +1,12 @@
 /*
  * Layout for /cv. Imported only by src/pages/cv.astro.
  *
- * The CV deliberately does not use the `.prose` classes the rest of the site
- * reads through. Prose's vertical rhythm is calibrated for reading an essay
- * top to bottom; a CV is skimmed, and that spacing is most of what made this
- * page read like a blog post about a career rather than a record of one.
+ * Deliberately outside the `.prose` classes the rest of the site reads
+ * through: prose spacing is calibrated for reading an essay top to bottom,
+ * and a CV is skimmed.
  *
- * Everything here stays in the site's monospace and its custom properties, so
- * the dark toggle keeps working and src/styles/print.css can override the
- * palette in one place.
+ * Everything here uses the site's custom properties, so the dark toggle keeps
+ * working and src/styles/print.css can override the palette in one place.
  */
 
 .cv-section + .cv-section {
@@ -61,13 +59,9 @@
 }
 
 /*
- * Role bullets. Plain list: the old two-column label layout catalogued the
- * surfaces a role touched (Backend / Frontend / Ops / Mobile / Web / Data)
- * rather than what came of it, and gave every role the same shape.
- *
- * Kept as block flow rather than grid on purpose — Chrome does not fragment
- * grid containers when printing, so a list that did not fit the rest of a
- * page moved to the next one whole and left a third of a page blank.
+ * Block flow, not grid or flex: Chrome does not fragment those containers
+ * when printing, so a list too tall for the rest of a page moves to the next
+ * one whole and leaves the remainder blank.
  */
 .cv-bullets {
 	margin-top: 0.75rem;
@@ -97,18 +91,18 @@
 	clear: both;
 }
 
-/* Same float model and same reasoning as .cv-highlights; 14ch clears
-   "Observability". */
+/* Floats rather than grid, for the print reason above. 11ch clears
+   "Portuguese", the longest label this list holds. */
 .cv-list dt {
 	float: left;
 	clear: left;
-	width: 14ch;
+	width: 11ch;
 	font-weight: 700;
 	color: var(--color-accent-2);
 }
 
 .cv-list dd {
-	margin: 0 0 0.5rem calc(14ch + 1.25rem);
+	margin: 0 0 0.5rem calc(11ch + 1.25rem);
 }
 
 .cv-list dd:last-of-type {

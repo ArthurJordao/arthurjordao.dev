@@ -19,12 +19,9 @@
 export type CvMonth = `${number}-${number}`;
 
 /**
- * Whole years since a month, spelled out, floored.
- *
- * The summary says how long the Haskell has been in production, and a number
- * typed by hand there is wrong within months with nobody noticing — exactly
- * the rot this file exists to prevent everywhere else. The site rebuilds, so
- * it recomputes.
+ * Whole years since a month, spelled out, floored. The summary states how
+ * long the Haskell has been in production; computing it means it cannot go
+ * stale between rebuilds.
  */
 const YEAR_WORDS = [
 	"Zero",
@@ -50,7 +47,7 @@ function yearsSince(month: CvMonth): string {
 
 export interface CvBasics {
 	name: string;
-	/** The real job title, which the LinkedIn headline currently overstates. */
+	/** The role title. LinkedIn's headline is a separate field and may differ. */
 	title: string;
 	tagline: string;
 	location: string;
@@ -68,12 +65,7 @@ export interface CvPosition {
 	end: CvMonth | null;
 	location: string;
 	summary: string;
-	/**
-	 * What the role delivered, one entry each. Deliberately not grouped by
-	 * discipline the way Curriculum.docx and the LinkedIn profile group it:
-	 * that taxonomy catalogues the surfaces a role touched rather than what
-	 * came of it, and it gave every role the same shape.
-	 */
+	/** What the role delivered, one entry each. */
 	highlights: string[];
 	/**
 	 * The technology this role was built on. Load-bearing in two places: the
@@ -209,15 +201,9 @@ export const cv: Cv = {
 };
 
 /**
- * Derived from the roles rather than maintained by hand.
+ * The skills line, derived so it cannot list anything no role accounts for.
  *
- * Two hand-maintained lists of technology drift, and this pair did, twice and
- * silently: Elasticsearch was claimed in a commit message and never added,
- * MySQL was dropped with no decision behind it. Deriving makes listing
- * something no role accounts for structurally impossible, so the check that
- * used to enforce that is gone with it.
- *
- * The cost, accepted deliberately: the line carries everything, including PHP
- * and Jenkins from 2018. Order follows the roles, newest first.
+ * It carries every technology in every role, oldest jobs included, in role
+ * order. To change what appears or in what order, edit the roles' `tech`.
  */
 export const skills: string[] = [...new Set(cv.positions.flatMap((position) => position.tech))];
