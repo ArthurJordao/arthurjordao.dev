@@ -21,6 +21,9 @@ Education software for classroom writing.
 • Led three language-model upgrades behind automated grading against vendor retirement deadlines, and built the ground-truth evaluation script the pipeline was missing, so later upgrades are repeatable.
 • Led the refactor of the assignment tutorial system, remodelling frontend and backend so a new assignment type gets its tutorial and its intro tour without either being rebuilt.
 • Built translation and accessibility support for English language learners: a reusable language selection component, speech synthesis, screen-reader pronunciation of embedded foreign text, and right-to-left alignment.
+• Integrated a new activity type across every surface it touched, from teacher and student dashboards through to grade sync with Canvas and other LMSs.
+• Re-architected the portfolio page: backend pagination, queries narrowed to what the page actually needs, and aggregation moved off the frontend, which had been computing all of it on every load.
+• Building container tooling to run AI coding agents in parallel in isolation — Apple containers, with artefacts cached in ECR so an environment comes up in five minutes instead of thirty, tooling in place and database already seeded.
 
 Skills: Haskell, Elm, Ruby on Rails, PostgreSQL, MySQL, Datadog
 
