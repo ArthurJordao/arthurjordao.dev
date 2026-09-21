@@ -1,5 +1,5 @@
 ---
-import { cv } from "@/data/cv";
+import { cv, skills } from "@/data/cv";
 import PageLayout from "@/layouts/Base.astro";
 import "@/styles/cv.css";
 import "@/styles/print.css";
@@ -79,7 +79,7 @@ const short = (url: string) => url.replace(/^https:\/\/(www\.)?/, "").replace(/\
 
 		<section class="cv-section">
 			<h2 class="cv-section-title">Skills</h2>
-			<p>{cv.skills.join(", ")}</p>
+			<p>{skills.join(", ")}</p>
 		</section>
 
 		<section class="cv-section">

@@ -76,10 +76,10 @@ export interface CvPosition {
 	 */
 	highlights: string[];
 	/**
-	 * The skills LinkedIn attaches to a position; its search indexes them.
-	 * Feeds content/cv/linkedin-paste.txt only — the CV page showed these as
-	 * chips under each role and no longer does. Keep it to the handful that
-	 * characterise the work, not everything ever touched.
+	 * The technology this role was built on. Load-bearing in two places: the
+	 * skills that LinkedIn attaches to a position, and the page's skills line,
+	 * which is the union of these across every role. Order matters — the line
+	 * reads in role order, so this array's order is what a reader sees.
 	 */
 	tech: string[];
 }
@@ -101,13 +101,6 @@ export interface Cv {
 	summary: string;
 	positions: CvPosition[];
 	education: CvEducation[];
-	/**
-	 * One general line, not a breakdown by category. The per-role chips
-	 * already say where each thing was used, so a categorised list here only
-	 * repeats them without the context — which is what made this page read
-	 * like a LinkedIn profile.
-	 */
-	skills: string[];
 	languages: CvLanguage[];
 }
 
@@ -209,23 +202,6 @@ export const cv: Cv = {
 			end: "2019",
 		},
 	],
-	skills: [
-		"Haskell",
-		"Clojure",
-		"ClojureScript",
-		"Elm",
-		"Ruby on Rails",
-		"TypeScript",
-		"PostgreSQL",
-		"MySQL",
-		"Datomic",
-		"Kafka",
-		"Elasticsearch",
-		"Snowflake",
-		"GraphQL",
-		"Kubernetes",
-		"AWS",
-	],
 	languages: [
 		{ language: "Portuguese", level: "Native" },
 		{ language: "English", level: "Professional working proficiency" },
@@ -233,27 +209,15 @@ export const cv: Cv = {
 };
 
 /**
- * The skills line is curated by hand, not derived, because reading order
- * (languages, then data, then infrastructure) is something a union cannot
- * produce, and because not everything ever used belongs in the shop window —
- * a raw union would put PHP, Jenkins and API Gateway from 2017 on the page.
+ * Derived from the roles rather than maintained by hand.
  *
- * What is enforced is the subset relation: every skill listed must be
- * attributable to a role. Two hand-maintained lists of technology drift, and
- * this one already did twice — Elasticsearch was claimed and never added,
- * MySQL was dropped with no decision behind it. Both were silent. This turns
- * that class of mistake into a build failure, since astro.config.ts imports
- * site.config.ts, which imports this file.
+ * Two hand-maintained lists of technology drift, and this pair did, twice and
+ * silently: Elasticsearch was claimed in a commit message and never added,
+ * MySQL was dropped with no decision behind it. Deriving makes listing
+ * something no role accounts for structurally impossible, so the check that
+ * used to enforce that is gone with it.
  *
- * The reverse case — using something and choosing not to list it — is an
- * editorial decision, not a mistake, so it is not checked.
+ * The cost, accepted deliberately: the line carries everything, including PHP
+ * and Jenkins from 2018. Order follows the roles, newest first.
  */
-const attributable = new Set(cv.positions.flatMap((position) => position.tech));
-const unattributable = cv.skills.filter((skill) => !attributable.has(skill));
-
-if (unattributable.length > 0) {
-	throw new Error(
-		`src/data/cv.ts: ${unattributable.join(", ")} listed under skills but not in any ` +
-			"position's tech. Add it to the role it belongs to, or drop it from skills.",
-	);
-}
+export const skills: string[] = [...new Set(cv.positions.flatMap((position) => position.tech))];

@@ -13,7 +13,7 @@
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
-import { cv } from "../src/data/cv.ts";
+import { cv, skills } from "../src/data/cv.ts";
 
 const OUT = "content/cv/linkedin-paste.txt";
 
@@ -61,7 +61,7 @@ for (const entry of cv.education) {
 }
 
 lines.push("", "## SKILLS");
-lines.push(...cv.skills);
+lines.push(...skills);
 
 lines.push("", "## LANGUAGES");
 for (const entry of cv.languages) {
