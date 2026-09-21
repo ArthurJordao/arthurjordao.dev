@@ -89,7 +89,7 @@ const short = (url: string) => url.replace(/^https:\/\/(www\.)?/, "").replace(/\
 			}
 		</section>
 
-		<section class="cv-section">
+		<section class="cv-section cv-section-compact">
 			<h2 class="cv-section-title">Education</h2>
 			{
 				cv.education.map((entry) => (
@@ -106,12 +106,12 @@ const short = (url: string) => url.replace(/^https:\/\/(www\.)?/, "").replace(/\
 			}
 		</section>
 
-		<section class="cv-section">
+		<section class="cv-section cv-section-compact">
 			<h2 class="cv-section-title">Skills</h2>
 			<p>{skills.join(", ")}</p>
 		</section>
 
-		<section class="cv-section">
+		<section class="cv-section cv-section-compact">
 			<h2 class="cv-section-title">Languages</h2>
 			<dl class="cv-list">
 				{

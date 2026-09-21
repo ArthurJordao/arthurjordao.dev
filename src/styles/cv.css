@@ -13,6 +13,18 @@
 	margin-top: 2.5rem;
 }
 
+/*
+ * The short trailing sections are kept whole. Chrome honours break-inside on
+ * a container but largely ignores break-after on a heading, so a section
+ * landing near the foot of a page leaves its title there and pushes its
+ * content overleaf. These are a few lines each, so refusing to split them
+ * costs nothing; Experience is deliberately not in this set, because a role
+ * that cannot fit the remainder of a page would be pushed whole.
+ */
+.cv-section-compact {
+	break-inside: avoid;
+}
+
 .cv-section-title {
 	margin-bottom: 1.25rem;
 	padding-bottom: 0.375rem;
