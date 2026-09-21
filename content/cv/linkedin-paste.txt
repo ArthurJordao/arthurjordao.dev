@@ -25,7 +25,7 @@ Education software for classroom writing.
 • Re-architected the portfolio page: backend pagination, queries narrowed to what the page actually needs, and aggregation moved off the frontend, which had been computing all of it on every load.
 • Building container tooling to run AI coding agents in parallel in isolation — Apple containers, with artefacts cached in ECR so an environment comes up in five minutes instead of thirty, tooling in place and database already seeded.
 
-Skills: Haskell, Elm, Ruby on Rails, PostgreSQL, MySQL, Datadog
+Skills: Haskell, Elm, Ruby on Rails, PostgreSQL, MySQL, Snowflake, Datadog
 
 ### Nubank
 Title: Senior Software Engineer
@@ -40,7 +40,7 @@ Lending team, on the services that issue and service credit.
 • Led the online underwriting path in Clojure. Features could depend on other features, so the engine resolved them as a DAG — topologically sorted, each evaluated once its inputs were in hand — until the decision had everything it needed. An applicant it scored as risky could send income proof, which queued a human review before the final answer.
 • Defined the team's stability index metrics, and the monitoring and alerting behind them.
 
-Skills: Clojure, ClojureScript, Kafka, Elasticsearch, Elasticsearch, Datomic, Kubernetes, GraphQL, AWS, Prometheus
+Skills: Clojure, ClojureScript, Kafka, Elasticsearch, Elasticsearch, Datomic, Kubernetes, GraphQL, TypeScript, AWS, Prometheus
 
 ### Catho
 Title: Software Engineer

@@ -144,7 +144,7 @@ export const cv: Cv = {
 				"Re-architected the portfolio page: backend pagination, queries narrowed to what the page actually needs, and aggregation moved off the frontend, which had been computing all of it on every load.",
 				"Building container tooling to run AI coding agents in parallel in isolation — Apple containers, with artefacts cached in ECR so an environment comes up in five minutes instead of thirty, tooling in place and database already seeded.",
 			],
-			tech: ["Haskell", "Elm", "Ruby on Rails", "PostgreSQL", "MySQL", "Datadog"],
+			tech: ["Haskell", "Elm", "Ruby on Rails", "PostgreSQL", "MySQL", "Snowflake", "Datadog"],
 		},
 		{
 			company: "Nubank",
@@ -169,6 +169,7 @@ export const cv: Cv = {
 				"Datomic",
 				"Kubernetes",
 				"GraphQL",
+				"TypeScript",
 				"AWS",
 				"Prometheus",
 			],
@@ -230,3 +231,29 @@ export const cv: Cv = {
 		{ language: "English", level: "Professional working proficiency" },
 	],
 };
+
+/**
+ * The skills line is curated by hand, not derived, because reading order
+ * (languages, then data, then infrastructure) is something a union cannot
+ * produce, and because not everything ever used belongs in the shop window —
+ * a raw union would put PHP, Jenkins and API Gateway from 2017 on the page.
+ *
+ * What is enforced is the subset relation: every skill listed must be
+ * attributable to a role. Two hand-maintained lists of technology drift, and
+ * this one already did twice — Elasticsearch was claimed and never added,
+ * MySQL was dropped with no decision behind it. Both were silent. This turns
+ * that class of mistake into a build failure, since astro.config.ts imports
+ * site.config.ts, which imports this file.
+ *
+ * The reverse case — using something and choosing not to list it — is an
+ * editorial decision, not a mistake, so it is not checked.
+ */
+const attributable = new Set(cv.positions.flatMap((position) => position.tech));
+const unattributable = cv.skills.filter((skill) => !attributable.has(skill));
+
+if (unattributable.length > 0) {
+	throw new Error(
+		`src/data/cv.ts: ${unattributable.join(", ")} listed under skills but not in any ` +
+			"position's tech. Add it to the role it belongs to, or drop it from skills.",
+	);
+}
