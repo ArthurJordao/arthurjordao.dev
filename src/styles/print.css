@@ -29,6 +29,26 @@
 		font-size: 10pt;
 	}
 
+	/* Paper takes a tighter vertical rhythm than a screen does: there is no
+	   scrolling, the eye has the whole page for context, and every millimetre
+	   saved is a line that does not spill onto a third sheet. Screen spacing
+	   is unchanged. */
+	.cv-section + .cv-section {
+		margin-top: 1.25rem;
+	}
+
+	.cv-section-title {
+		margin-bottom: 0.625rem;
+	}
+
+	.cv-entry + .cv-entry {
+		margin-top: 1rem;
+	}
+
+	.cv-bullets {
+		margin-top: 0.5rem;
+	}
+
 	/* Site chrome has no business on a CV. No !important needed: this file is
 	   imported unlayered, and unlayered rules outrank every @layer, including
 	   the Tailwind utilities that set these elements' display. */
