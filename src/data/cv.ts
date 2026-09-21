@@ -168,7 +168,7 @@ export const cv: Cv = {
 				"Built and ran core lending services as Clojure microservices: account management, renegotiation, issuance and dynamic underwriting.",
 				"Extracted payments out of the personal loan domain into a standalone service. Another team's platform had been charging installments for us, debiting the customer's account on our behalf; as it generalized from lending to credit cards, lending took over its own settlement — boleto and Pix cleared directly with the services that move money, over Kafka and idempotent end to end.",
 				"Streamed credit policies into Elasticsearch through Kafka, so the team could monitor credit exposure live.",
-				"Led the online underwriting path in Clojure. Features could depend on other features, so the engine resolved them as a DAG — topologically sorted, each evaluated once its inputs were in hand — until the decision had everything it needed. An applicant it scored as risky could send income proof, which queued a human review before the final answer.",
+				"Built the online underwriting flow in Clojure, over the team's feature-resolution engine: scoring the loan being requested, and the path where an applicant it scored as risky could send income proof, which queued a human review before the final answer.",
 				"Built the back-end driven architecture behind the mobile clients: what the Flutter and React Native apps rendered was decided server-side over GraphQL, rather than shipped in an app release.",
 			],
 			tech: [
