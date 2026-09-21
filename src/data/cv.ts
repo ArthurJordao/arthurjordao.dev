@@ -170,7 +170,6 @@ export const cv: Cv = {
 				"Streamed credit policies into Elasticsearch through Kafka, so the team could monitor credit exposure live.",
 				"Led the online underwriting path in Clojure. Features could depend on other features, so the engine resolved them as a DAG — topologically sorted, each evaluated once its inputs were in hand — until the decision had everything it needed. An applicant it scored as risky could send income proof, which queued a human review before the final answer.",
 				"Built the back-end driven architecture behind the mobile clients: what the Flutter and React Native apps rendered was decided server-side over GraphQL, rather than shipped in an app release.",
-				"Defined the team's stability index metrics, and the monitoring and alerting behind them.",
 			],
 			tech: [
 				"Clojure",
