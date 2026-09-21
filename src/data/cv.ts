@@ -18,6 +18,36 @@
 /** Month precision, "YYYY-MM", matching how LinkedIn stores dates. */
 export type CvMonth = `${number}-${number}`;
 
+/**
+ * Whole years since a month, spelled out, floored.
+ *
+ * The summary says how long the Haskell has been in production, and a number
+ * typed by hand there is wrong within months with nobody noticing — exactly
+ * the rot this file exists to prevent everywhere else. The site rebuilds, so
+ * it recomputes.
+ */
+const YEAR_WORDS = [
+	"Zero",
+	"One",
+	"Two",
+	"Three",
+	"Four",
+	"Five",
+	"Six",
+	"Seven",
+	"Eight",
+	"Nine",
+	"Ten",
+];
+
+function yearsSince(month: CvMonth): string {
+	const start = new Date(`${month}-01T00:00:00Z`);
+	const now = new Date();
+	let years = now.getUTCFullYear() - start.getUTCFullYear();
+	if (now.getUTCMonth() < start.getUTCMonth()) years -= 1;
+	return YEAR_WORDS[years] ?? String(years);
+}
+
 export interface CvBasics {
 	name: string;
 	/** The real job title, which the LinkedIn headline currently overstates. */
@@ -93,10 +123,10 @@ export const cv: Cv = {
 		site: "https://arthurjordao.dev",
 	},
 	summary:
-		"Software engineer solving problems with functional programming and reactive systems. " +
-		"Four years writing Haskell in production at NoRedInk, and before that Clojure on " +
-		"Nubank's lending infrastructure. Most of my career has been functional programming at " +
-		"companies running it at scale.",
+		"Self-taught software engineer. " +
+		`${yearsSince("2022-04")} years writing Haskell in production at NoRedInk, and before that ` +
+		"Clojure on Nubank's lending infrastructure. Most of my career has been functional " +
+		"programming at companies running it at scale.",
 	positions: [
 		{
 			company: "NoRedInk",

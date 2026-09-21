@@ -6,7 +6,7 @@
 Software Engineer | Functional programming and distributed systems
 
 ## ABOUT
-Software engineer solving problems with functional programming and reactive systems. Four years writing Haskell in production at NoRedInk, and before that Clojure on Nubank's lending infrastructure. Most of my career has been functional programming at companies running it at scale.
+Self-taught software engineer. Four years writing Haskell in production at NoRedInk, and before that Clojure on Nubank's lending infrastructure. Most of my career has been functional programming at companies running it at scale.
 
 ## EXPERIENCE
 
@@ -78,6 +78,7 @@ TypeScript
 PostgreSQL
 Snowflake
 Kafka
+Elasticsearch
 Kubernetes
 AWS
 
