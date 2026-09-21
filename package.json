@@ -15,7 +15,8 @@
 		"check:cv": "./scripts/check-cv.sh",
 		"verify": "npm run build && npm run check:routes && npm run check:seo && npm run check:cv",
 		"lint": "biome check --write",
-		"format": "prettier -w . --cache"
+		"format": "prettier -w . --cache",
+		"cv:linkedin": "tsx scripts/cv-linkedin.ts"
 	},
 	"dependencies": {
 		"@astrojs/markdown-satteri": "^0.3.3",
@@ -56,6 +57,7 @@
 		"prettier-plugin-astro": "0.14.1",
 		"prettier-plugin-tailwindcss": "^0.8.0",
 		"reading-time": "^1.5.0",
+		"tsx": "^4.23.15",
 		"typescript": "^6.0.3"
 	},
 	"overrides": {
