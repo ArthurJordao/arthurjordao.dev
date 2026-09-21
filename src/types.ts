@@ -39,6 +39,12 @@ export interface SiteMeta {
 	articleDate?: string | undefined;
 	description?: string;
 	ogImage?: string | undefined;
+	/**
+	 * Used verbatim as <title> instead of "<title> • <site title>". The home
+	 * page needs this: "Home • Arthur Jordão" buries the name that the page is
+	 * actually meant to rank for behind a word nobody searches.
+	 */
+	seoTitle?: string | undefined;
 	title: string;
 }
 
