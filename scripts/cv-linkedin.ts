@@ -1,11 +1,8 @@
 /**
  * Renders src/data/cv.ts into the plain text LinkedIn's fields accept.
  *
- * The output file is committed on purpose. Its value is the `git diff` after
- * a CV change: that diff is the list of fields to paste into LinkedIn, so the
- * manual work stays proportional to what actually changed instead of to the
- * size of the CV. Emitting it into dist/ would publish it and leave nothing
- * to diff against.
+ * The output is committed, not built into dist/, because its value is the
+ * `git diff` after a CV change: that diff is the list of fields to paste.
  *
  * LinkedIn's own limits, which this stays inside: About caps at 2,600
  * characters and each position description at 2,000. scripts/check-cv.sh
@@ -45,7 +42,7 @@ for (const position of cv.positions) {
 		"",
 		`### ${position.company}`,
 		`Title: ${position.title}`,
-		`Dates: ${formatMonth(position.start)} - ${end}`,
+		`Dates: ${formatMonth(position.start)} — ${end}`,
 		`Location: ${position.location}`,
 		"",
 		position.summary,
@@ -58,7 +55,7 @@ for (const position of cv.positions) {
 
 lines.push("", "## EDUCATION");
 for (const entry of cv.education) {
-	lines.push(`${entry.institution} — ${entry.qualification} (${entry.start}–${entry.end})`);
+	lines.push(`${entry.institution} — ${entry.qualification} (${entry.start} — ${entry.end})`);
 }
 
 lines.push("", "## SKILLS");

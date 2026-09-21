@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 # Guards the invariants of the /cv page that a build failure would never catch.
 #
-# Two of these are privacy rules rather than correctness rules: the phone
-# number and the personal gmail both appear in the source documents this page
-# was built from, and a public indexed page is a different exposure from a
-# .docx sent to a named recruiter. The rest pin the facts that the LinkedIn
-# export and Curriculum.docx disagreed about, so a well-meaning edit that
-# reintroduces "Senior Software Engineer" at NoRedInk fails loudly.
+# Two are privacy rules rather than correctness rules: a phone number and a
+# personal address that belong on a CV sent to a named recruiter, and not on
+# a page the open web can index. The rest pin facts that are easy to get
+# wrong in good faith.
 set -euo pipefail
 
 DIST="${1:-dist}"

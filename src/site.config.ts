@@ -24,8 +24,6 @@ export const siteConfig: SiteConfig = {
 	// They exist to answer one question for a search engine: of the several
 	// people named Arthur Jordão, which one is this domain about?
 	alternateName: "Arthur Jordao",
-	// Derived so the job title is stated once. The LinkedIn headline overstates
-	// it as "Senior Software Engineer"; src/data/cv.ts holds the settled value.
 	jobTitle: cv.basics.title,
 	employer: { name: "NoRedInk", url: "https://www.noredink.com/" },
 	knowsAbout: ["Haskell", "Clojure", "Elm", "Functional programming"],

@@ -119,3 +119,8 @@
 		margin-left: 0;
 	}
 }
+
+.cv-print {
+	border-color: var(--color-muted);
+	border-radius: 2px;
+}

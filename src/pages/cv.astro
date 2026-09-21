@@ -30,7 +30,17 @@ const short = (url: string) => url.replace(/^https:\/\/(www\.)?/, "").replace(/\
 
 <PageLayout meta={meta}>
 	<article>
-		<h1 class="title mb-1">{cv.basics.name}</h1>
+		<div class="flex items-start justify-between gap-4">
+			<h1 class="title mb-1">{cv.basics.name}</h1>
+			<button
+				class="cv-print text-muted hover:text-link shrink-0 cursor-pointer border border-dashed px-2 py-1 text-xs"
+				hidden
+				id="cv-print"
+				type="button"
+			>
+				Print / Save as PDF
+			</button>
+		</div>
 		<p class="text-accent-2">{cv.basics.title} · {cv.basics.tagline}</p>
 		<ul class="text-muted mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs">
 			<li>{cv.basics.location}</li>
@@ -100,4 +110,14 @@ const short = (url: string) => url.replace(/^https:\/\/(www\.)?/, "").replace(/\
 			</dl>
 		</section>
 	</article>
+
+	<script>
+		// The button ships hidden and is revealed here, so it never appears to a
+		// reader whose browser would not run its click handler.
+		const button = document.getElementById("cv-print");
+		if (button) {
+			button.hidden = false;
+			button.addEventListener("click", () => window.print());
+		}
+	</script>
 </PageLayout>

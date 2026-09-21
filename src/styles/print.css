@@ -33,7 +33,8 @@
 	   imported unlayered, and unlayered rules outrank every @layer, including
 	   the Tailwind utilities that set these elements' display. */
 	#main-header,
-	footer {
+	footer,
+	.cv-print {
 		display: none;
 	}
 
