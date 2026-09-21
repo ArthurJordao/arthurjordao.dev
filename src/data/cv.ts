@@ -122,7 +122,7 @@ export const cv: Cv = {
 			summary: "Lending team, on the services that issue and service credit.",
 			highlights: [
 				"Built and ran core lending services as Clojure microservices: account management, renegotiation, issuance and dynamic underwriting.",
-				"Extracted payments out of the personal loan domain into a standalone service. The team had been asking another team's service to charge an installment, which debited the customer's account for us; afterwards we settled boleto and Pix ourselves, directly with the services that move money, over Kafka and idempotent end to end.",
+				"Extracted payments out of the personal loan domain into a standalone service. Another team's platform had been charging installments for us, debiting the customer's account on our behalf; as it generalised from lending to credit cards, lending took over its own settlement — boleto and Pix cleared directly with the services that move money, over Kafka and idempotent end to end.",
 				"Streamed credit policies into Elasticsearch through Kafka, so the team could monitor credit exposure live.",
 				"Led the real-time risk analysis work on customer data — drove the architecture, wrote the tech assessments, set expectations with stakeholders.",
 				"Defined the team's stability index metrics, and the monitoring and alerting behind them.",
