@@ -1,36 +1,17 @@
 ---
 import { Icon } from "astro-icon/components";
+import { socialLinks } from "@/data/social";
 
 /** 
 	Uses https://www.astroicon.dev/getting-started/
 	Find icons via guide: https://www.astroicon.dev/guides/customization/#open-source-icon-sets
 	Only installed pack is: @iconify-json/mdi
+
+	The list itself lives in src/data/social.ts because Schema.astro emits the
+	same profiles as schema.org sameAs.
 */
-const socialLinks: {
-	friendlyName: string;
-	isWebmention?: boolean;
-	link: string;
-	name: string;
-}[] = [
-	{ friendlyName: "Github", link: "https://github.com/ArthurJordao", name: "mdi:github" },
-	{ friendlyName: "X", link: "https://x.com/_ArthurJordao", name: "simple-icons:x" },
-	{
-		friendlyName: "YouTube",
-		link: "https://www.youtube.com/channel/UC9GfddKP0AFtoSoAXsr5fCw",
-		name: "mdi:youtube",
-	},
-	{ friendlyName: "LinkedIn", link: "https://linkedin.com/in/arthurjordao/", name: "mdi:linkedin" },
-	{ friendlyName: "Instagram", link: "https://instagram.com/arthurbjordao", name: "mdi:instagram" },
-	{ friendlyName: "Mastodon", link: "https://bolha.us/@arthurjordao", name: "mdi:mastodon" },
-	{
-		friendlyName: "Bluesky",
-		link: "https://bsky.app/profile/arthurjordao.dev",
-		name: "simple-icons:bluesky",
-	},
-	{ friendlyName: "Keybase", link: "https://keybase.io/arthurjordao", name: "mdi:key-variant" },
-	{ friendlyName: "Email", link: "mailto:hi@arthurjordao.dev", name: "mdi:email" },
-];
 ---
+
 
 <div class="flex flex-wrap items-end gap-x-2">
 	<p>Find me on</p>
