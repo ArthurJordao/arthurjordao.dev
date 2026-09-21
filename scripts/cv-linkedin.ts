@@ -50,6 +50,8 @@ for (const position of cv.positions) {
 		position.summary,
 		"",
 		...position.highlights.map((highlight) => `• ${highlight.area}: ${highlight.detail}`),
+		"",
+		`Skills: ${position.tech.join(", ")}`,
 	);
 }
 

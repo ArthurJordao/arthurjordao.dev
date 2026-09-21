@@ -1,6 +1,7 @@
 ---
 import { cv } from "@/data/cv";
 import PageLayout from "@/layouts/Base.astro";
+import "@/styles/cv.css";
 import "@/styles/print.css";
 
 const meta = {
@@ -18,66 +19,98 @@ const formatMonth = (month: string) =>
 
 const range = (start: string, end: string | null) =>
 	`${formatMonth(start)} — ${end ? formatMonth(end) : "Present"}`;
+
+/** Strip the scheme so a printed link reads as a label, not as a URL bar. */
+const short = (url: string) => url.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "");
 ---
 
 <PageLayout meta={meta}>
-	<h1 class="title mb-2">{cv.basics.name}</h1>
-	<p class="text-accent-2">{cv.basics.title} · {cv.basics.tagline}</p>
-	<ul class="text-muted mt-2 mb-12 flex flex-wrap gap-x-3 text-xs">
-		<li>{cv.basics.location}</li>
-		<li><a class="cactus-link" href={`mailto:${cv.basics.email}`}>{cv.basics.email}</a></li>
-		<li><a class="cactus-link" href={cv.basics.github}>github.com/ArthurJordao</a></li>
-		<li><a class="cactus-link" href={cv.basics.linkedin}>linkedin.com/in/arthurjordao</a></li>
-	</ul>
+	<article class="cv">
+		<h1 class="title mb-1">{cv.basics.name}</h1>
+		<p class="text-accent-2">{cv.basics.title} · {cv.basics.tagline}</p>
+		<ul class="text-muted mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs">
+			<li>{cv.basics.location}</li>
+			<li><a class="cactus-link" href={`mailto:${cv.basics.email}`}>{cv.basics.email}</a></li>
+			<li><a class="cactus-link" href={cv.basics.github}>{short(cv.basics.github)}</a></li>
+			<li><a class="cactus-link" href={cv.basics.linkedin}>{short(cv.basics.linkedin)}</a></li>
+		</ul>
 
-	<div class="prose prose-sm prose-cactus max-w-none">
-		<p>{cv.summary}</p>
+		<p class="mt-8">{cv.summary}</p>
 
-		<h2>Experience</h2>
-		{
-			cv.positions.map((position) => (
-				<section class="cv-entry">
-					<h3 class="mb-0">
-						{position.title} · {position.company}
-					</h3>
-					<p class="text-muted mt-0 text-xs">
-						{range(position.start, position.end)} · {position.location}
-					</p>
-					<p>{position.summary}</p>
-					<ul>
-						{position.highlights.map((highlight) => (
-							<li>
-								<strong>{highlight.area}:</strong> {highlight.detail}
-							</li>
-						))}
-					</ul>
-				</section>
-			))
-		}
-
-		<h2>Education</h2>
-		{
-			cv.education.map((entry) => (
-				<p class="cv-entry">
-					<strong>{entry.institution}</strong> — {entry.qualification} ({entry.start}–{entry.end})
-				</p>
-			))
-		}
-
-		<h2>Skills</h2>
-		<ul>
+		<section class="cv-section mt-10">
+			<h2 class="cv-section-title">Experience</h2>
 			{
-				cv.skills.map((group) => (
-					<li>
-						<strong>{group.label}:</strong> {group.items.join(", ")}
-					</li>
+				cv.positions.map((position) => (
+					<div class="cv-entry">
+						<div class="cv-entry-head">
+							<h3 class="cv-entry-role">{position.title}</h3>
+							<span class="cv-entry-dates">{range(position.start, position.end)}</span>
+						</div>
+						<p class="cv-entry-where">
+							{position.company} · {position.location}
+						</p>
+						<p class="cv-entry-summary">{position.summary}</p>
+						<dl class="cv-highlights">
+							{position.highlights.map((highlight) => (
+								<>
+									<dt>{highlight.area}</dt>
+									<dd>{highlight.detail}</dd>
+								</>
+							))}
+						</dl>
+						<ul class="cv-tech">
+							{position.tech.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</div>
 				))
 			}
-		</ul>
+		</section>
 
-		<h2>Languages</h2>
-		<ul>
-			{cv.languages.map((entry) => <li>{entry.language} — {entry.level}</li>)}
-		</ul>
-	</div>
+		<section class="cv-section">
+			<h2 class="cv-section-title">Education</h2>
+			{
+				cv.education.map((entry) => (
+					<div class="cv-entry">
+						<div class="cv-entry-head">
+							<h3 class="cv-entry-role">{entry.qualification}</h3>
+							<span class="cv-entry-dates">
+								{entry.start} — {entry.end}
+							</span>
+						</div>
+						<p class="cv-entry-where">{entry.institution}</p>
+					</div>
+				))
+			}
+		</section>
+
+		<section class="cv-section">
+			<h2 class="cv-section-title">Skills</h2>
+			<dl class="cv-list">
+				{
+					cv.skills.map((group) => (
+						<>
+							<dt>{group.label}</dt>
+							<dd>{group.items.join(", ")}</dd>
+						</>
+					))
+				}
+			</dl>
+		</section>
+
+		<section class="cv-section">
+			<h2 class="cv-section-title">Languages</h2>
+			<dl class="cv-list">
+				{
+					cv.languages.map((entry) => (
+						<>
+							<dt>{entry.language}</dt>
+							<dd>{entry.level}</dd>
+						</>
+					))
+				}
+			</dl>
+		</section>
+	</article>
 </PageLayout>

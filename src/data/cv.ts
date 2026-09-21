@@ -40,6 +40,13 @@ export interface CvPosition {
 	summary: string;
 	/** Grouped by discipline, the shape Curriculum.docx already used. */
 	highlights: { area: string; detail: string }[];
+	/**
+	 * The scannable index of the role. Overlaps with what the highlights name
+	 * in prose, deliberately: the bullets are read, these are skimmed. Keep it
+	 * to the handful that characterise the work, not everything ever touched.
+	 * LinkedIn takes these as the skills attached to a position.
+	 */
+	tech: string[];
 }
 
 export interface CvEducation {
@@ -113,6 +120,7 @@ export const cv: Cv = {
 					detail: "Organise and run the company Haskell book club.",
 				},
 			],
+			tech: ["Haskell", "Elm", "Ruby on Rails", "PostgreSQL", "MySQL", "Datadog"],
 		},
 		{
 			company: "Nubank",
@@ -156,6 +164,16 @@ export const cv: Cv = {
 						"decisions, wrote the tech assessments and set expectations with stakeholders.",
 				},
 			],
+			tech: [
+				"Clojure",
+				"ClojureScript",
+				"Kafka",
+				"Datomic",
+				"Kubernetes",
+				"GraphQL",
+				"AWS",
+				"Prometheus",
+			],
 		},
 		{
 			company: "Catho",
@@ -172,6 +190,7 @@ export const cv: Cv = {
 					detail: "Features for a monolith in PHP and Java, with RabbitMQ, Jenkins and JavaScript.",
 				},
 			],
+			tech: ["PHP", "Java", "RabbitMQ", "Jenkins", "JavaScript"],
 		},
 		{
 			company: "Accenture",
@@ -189,6 +208,7 @@ export const cv: Cv = {
 						"Microservices on AWS serverless: DynamoDB, Lambda, SQS, SNS, CloudWatch and API Gateway, in Java.",
 				},
 			],
+			tech: ["Java", "AWS Lambda", "DynamoDB", "SQS", "SNS", "API Gateway"],
 		},
 	],
 	education: [

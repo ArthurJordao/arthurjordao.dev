@@ -48,10 +48,17 @@
 	}
 
 	/* On paper a link is only useful if its target is printed with it. Scoped
-	   to external links so the mailto and the in-page nav stay clean. */
-	.prose a[href^="http"]::after {
+	   to links inside an entry: the contact row already shows its URLs as the
+	   link text, so expanding those would print each one twice. */
+	.cv-entry a[href^="http"]::after {
 		content: " (" attr(href) ")";
 		font-size: 0.85em;
 		word-break: break-all;
+	}
+
+	/* Chips are drawn with a muted border that the palette override above
+	   turns near-black, so they survive a greyscale printer. */
+	.cv-tech li {
+		color: var(--color-muted);
 	}
 }
