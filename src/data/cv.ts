@@ -200,7 +200,8 @@ export const cv: Cv = {
 		},
 	],
 	skills: [
-		{ label: "Languages", items: ["Haskell", "Clojure", "Elm", "Ruby", "TypeScript"] },
+		// Not "Languages": the spoken-language section below already owns that word.
+		{ label: "Programming", items: ["Haskell", "Clojure", "Elm", "Ruby", "TypeScript"] },
 		{ label: "Data", items: ["PostgreSQL", "MySQL", "Datomic", "Kafka"] },
 		{ label: "Infrastructure", items: ["AWS", "Kubernetes", "GraphQL"] },
 		{

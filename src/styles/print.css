@@ -29,11 +29,13 @@
 		font-size: 10pt;
 	}
 
-	/* Site chrome has no business on a CV. */
+	/* Site chrome has no business on a CV. No !important needed: this file is
+	   imported unlayered, and unlayered rules outrank every @layer, including
+	   the Tailwind utilities that set these elements' display. */
 	#main-header,
 	footer,
 	.skip-link {
-		display: none !important;
+		display: none;
 	}
 
 	/* A job must not straddle a page break. */
