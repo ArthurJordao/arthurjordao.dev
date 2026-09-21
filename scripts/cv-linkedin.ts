@@ -4,9 +4,8 @@
  * The output is committed, not built into dist/, because its value is the
  * `git diff` after a CV change: that diff is the list of fields to paste.
  *
- * LinkedIn's own limits, which this stays inside: About caps at 2,600
- * characters and each position description at 2,000. scripts/check-cv.sh
- * asserts both.
+ * LinkedIn truncates silently past its field limits: 2,600 characters for
+ * About, 2,000 for a position description.
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
