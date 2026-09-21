@@ -59,11 +59,6 @@
 		break-after: avoid;
 	}
 
-	/* Chips belong to the role above them. */
-	.cv-tech {
-		break-before: avoid;
-	}
-
 	p,
 	dd {
 		orphans: 3;
@@ -77,11 +72,5 @@
 		content: " (" attr(href) ")";
 		font-size: 0.85em;
 		word-break: break-all;
-	}
-
-	/* Chips are drawn with a muted border that the palette override above
-	   turns near-black, so they survive a greyscale printer. */
-	.cv-tech li {
-		color: var(--color-muted);
 	}
 }

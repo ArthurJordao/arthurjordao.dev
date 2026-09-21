@@ -46,10 +46,10 @@ export interface CvPosition {
 	 */
 	highlights: string[];
 	/**
-	 * The scannable index of the role. Overlaps with what the highlights name
-	 * in prose, deliberately: the bullets are read, these are skimmed. Keep it
-	 * to the handful that characterise the work, not everything ever touched.
-	 * LinkedIn takes these as the skills attached to a position.
+	 * The skills LinkedIn attaches to a position; its search indexes them.
+	 * Feeds content/cv/linkedin-paste.txt only — the CV page showed these as
+	 * chips under each role and no longer does. Keep it to the handful that
+	 * characterise the work, not everything ever touched.
 	 */
 	tech: string[];
 }

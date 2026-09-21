@@ -91,23 +91,6 @@
 	margin-bottom: 0;
 }
 
-.cv-tech {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 0.375rem;
-	margin-top: 0.875rem;
-	padding: 0;
-	list-style: none;
-}
-
-.cv-tech li {
-	padding: 0.0625rem 0.375rem;
-	border: 1px dotted var(--color-muted);
-	border-radius: 2px;
-	color: var(--color-muted);
-	font-size: 0.75rem;
-}
-
 .cv-list::after {
 	content: "";
 	display: block;
