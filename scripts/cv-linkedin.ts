@@ -30,7 +30,7 @@ const lines: string[] = [
 	`${cv.basics.title} | ${cv.basics.tagline}`,
 	"",
 	"## ABOUT",
-	cv.summary,
+	cv.linkedinAbout,
 	"",
 	"## EXPERIENCE",
 ];
