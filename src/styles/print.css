@@ -1,0 +1,55 @@
+/*
+ * Turns /cv into the PDF. Imported only by src/pages/cv.astro.
+ *
+ * The site's dark mode is a data-theme attribute on <html>, and whatever the
+ * reader last toggled is what the print dialog would otherwise capture — a
+ * dark CV wastes toner and reads badly on paper. These rules force the light
+ * palette by redeclaring the same custom properties the theme sets.
+ */
+@media print {
+	:root,
+	:root[data-theme="dark"] {
+		--color-global-bg: white;
+		--color-global-text: black;
+		--color-muted: #444;
+		--color-link: black;
+		--color-accent: black;
+		--color-accent-2: black;
+		--color-quote: black;
+		color-scheme: light;
+	}
+
+	@page {
+		margin: 1.5cm 1.6cm;
+	}
+
+	body {
+		max-width: none;
+		padding: 0;
+		font-size: 10pt;
+	}
+
+	/* Site chrome has no business on a CV. */
+	#main-header,
+	footer,
+	.skip-link {
+		display: none !important;
+	}
+
+	/* A job must not straddle a page break. */
+	.cv-entry {
+		break-inside: avoid;
+	}
+
+	h2 {
+		break-after: avoid;
+	}
+
+	/* On paper a link is only useful if its target is printed with it. Scoped
+	   to external links so the mailto and the in-page nav stay clean. */
+	.prose a[href^="http"]::after {
+		content: " (" attr(href) ")";
+		font-size: 0.85em;
+		word-break: break-all;
+	}
+}

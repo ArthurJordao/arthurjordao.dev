@@ -62,16 +62,31 @@ for dropped in Udacity Filad Spring EJB; do
 done
 
 # --- print ----------------------------------------------------------------
-css_files=$(grep -o '/_astro/[^"]*\.css' "$PAGE" | sort -u)
-if [ -z "$css_files" ]; then
-  fail "the CV page loads no stylesheet"
+# Astro's build.inlineStylesheets defaults to "auto", so a stylesheet this
+# small lands in a <style> tag in the HTML rather than in /_astro/*.css. Look
+# in both places: which one Astro picks is a bundling detail, and the page
+# either carries the print rules or it does not.
+found_print=0
+grep -q '@media print' "$PAGE" && found_print=1
+for css in $(grep -o '/_astro/[^"]*\.css' "$PAGE" | sort -u); do
+  grep -q '@media print' "$DIST$css" && found_print=1
+done
+if [ "$found_print" = "1" ]; then
+  echo "OK: print rules are on the page"
 else
-  found_print=0
-  for css in $css_files; do
-    grep -q '@media print' "$DIST$css" && found_print=1
-  done
-  [ "$found_print" = "1" ] || fail "no @media print rules in the CV page's CSS"
-  [ "$found_print" = "1" ] && echo "OK: print stylesheet is on the page"
+  fail "no @media print rules on the CV page, inline or linked"
+fi
+
+# The regression most likely to ship unnoticed: the reader last toggled dark
+# mode, and that is what the print dialog captures. The override has to name
+# the dark theme explicitly to outrank it, so assert it survives edits.
+print_block=$(sed -n '/@media print/,/^}/p' "$PAGE")
+if [ "$found_print" = "1" ]; then
+  case "$print_block" in
+    *'data-theme=\"dark\"'*|*"data-theme='dark'"*|*'data-theme=dark'*)
+      echo "OK: print rules override the dark theme" ;;
+    *) fail "print rules do not override data-theme=dark; a dark CV will print" ;;
+  esac
 fi
 
 # --- LinkedIn paste file --------------------------------------------------
