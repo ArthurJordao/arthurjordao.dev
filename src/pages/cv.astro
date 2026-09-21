@@ -1,0 +1,83 @@
+---
+import { cv } from "@/data/cv";
+import PageLayout from "@/layouts/Base.astro";
+import "@/styles/print.css";
+
+const meta = {
+	description: `CV of Arthur Jordão — ${cv.basics.title}, ${cv.basics.tagline}.`,
+	title: "CV",
+};
+
+/** "2022-04" -> "Apr 2022". A CV wants month precision, not the site's day format. */
+const formatMonth = (month: string) =>
+	new Date(`${month}-01T00:00:00Z`).toLocaleDateString("en-US", {
+		month: "short",
+		timeZone: "UTC",
+		year: "numeric",
+	});
+
+const range = (start: string, end: string | null) =>
+	`${formatMonth(start)} — ${end ? formatMonth(end) : "Present"}`;
+---
+
+<PageLayout meta={meta}>
+	<h1 class="title mb-2">{cv.basics.name}</h1>
+	<p class="text-accent-2">{cv.basics.title} · {cv.basics.tagline}</p>
+	<ul class="text-muted mt-2 mb-12 flex flex-wrap gap-x-3 text-xs">
+		<li>{cv.basics.location}</li>
+		<li><a class="cactus-link" href={`mailto:${cv.basics.email}`}>{cv.basics.email}</a></li>
+		<li><a class="cactus-link" href={cv.basics.github}>github.com/ArthurJordao</a></li>
+		<li><a class="cactus-link" href={cv.basics.linkedin}>linkedin.com/in/arthurjordao</a></li>
+	</ul>
+
+	<div class="prose prose-sm prose-cactus max-w-none">
+		<p>{cv.summary}</p>
+
+		<h2>Experience</h2>
+		{
+			cv.positions.map((position) => (
+				<section class="cv-entry">
+					<h3 class="mb-0">
+						{position.title} · {position.company}
+					</h3>
+					<p class="text-muted mt-0 text-xs">
+						{range(position.start, position.end)} · {position.location}
+					</p>
+					<p>{position.summary}</p>
+					<ul>
+						{position.highlights.map((highlight) => (
+							<li>
+								<strong>{highlight.area}:</strong> {highlight.detail}
+							</li>
+						))}
+					</ul>
+				</section>
+			))
+		}
+
+		<h2>Education</h2>
+		{
+			cv.education.map((entry) => (
+				<p class="cv-entry">
+					<strong>{entry.institution}</strong> — {entry.qualification} ({entry.start}–{entry.end})
+				</p>
+			))
+		}
+
+		<h2>Skills</h2>
+		<ul>
+			{
+				cv.skills.map((group) => (
+					<li>
+						<strong>{group.label}:</strong> {group.items.join(", ")}
+					</li>
+				))
+			}
+		</ul>
+
+		<h2>Languages</h2>
+		<ul>
+			{cv.languages.map((entry) => <li>{entry.language} — {entry.level}</li>)}
+		</ul>
+	</div>
+</PageLayout>
