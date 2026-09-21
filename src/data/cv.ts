@@ -187,6 +187,7 @@ export const cv: Cv = {
 		"PostgreSQL",
 		"Snowflake",
 		"Kafka",
+		"Elasticsearch",
 		"Kubernetes",
 		"AWS",
 	],
