@@ -106,10 +106,9 @@ export const cv: Cv = {
 			location: "Remote",
 			summary: "Education software for classroom writing.",
 			highlights: [
-				"Built the authoring layer for the in-house event platform that now carries all of the company's product analytics into Snowflake and Mitzu. Proposed a GitHub-backed editor over the planned CMS: definitions are versioned YAML, an edit opens a pull request, and review and audit came free with no new infrastructure.",
-				"A GitHub Actions job generates typed event clients for Ruby, Elm and Haskell from those definitions, so an undefined event is a compile error rather than a gap found later in the warehouse.",
+				"Built the authoring layer for the in-house event platform that now carries all of the company's product analytics into Snowflake and Mitzu. Proposed a GitHub-backed editor over the planned CMS: definitions are versioned YAML, an edit opens a pull request, and CI generates typed event clients for Ruby, Elm and Haskell — so review, audit and compile-time safety came free, with no new infrastructure.",
 				"Led three language-model upgrades behind automated grading against vendor retirement deadlines, and built the ground-truth evaluation script the pipeline was missing, so later upgrades are repeatable.",
-				"Took a core writing-submission feature end to end — API, UI, tests, metrics, launch and monitoring. Teachers extended assignment due dates less often within the first month.",
+				"Owned a writing-submission feature end to end — API, UI, tests, metrics, launch and monitoring. It lets teachers submit outstanding student work themselves instead of pushing the due date back, and due-date extensions dropped in its first month.",
 				"Built translation and accessibility support for English language learners: a reusable language selection component, speech synthesis, screen-reader pronunciation of embedded foreign text, and right-to-left alignment.",
 			],
 			tech: ["Haskell", "Elm", "Ruby on Rails", "PostgreSQL", "MySQL", "Datadog"],
