@@ -126,7 +126,7 @@ export const cv: Cv = {
 			location: "Remote",
 			summary: "Education software for classroom writing.",
 			highlights: [
-				"Built the authoring layer for the in-house event platform that now carries all of the company's product analytics into Snowflake and Mitzu. Proposed a GitHub-backed editor over the planned CMS: definitions are versioned YAML, an edit opens a pull request, and CI generates typed event clients for Ruby, Elm and Haskell — so review, audit and compile-time safety came free, with no new infrastructure.",
+				"Built the authoring layer for the in-house event platform that now carries all of the company's product analytics into Snowflake and Mitzu. Proposed an editor backed by GitHub over the planned CMS: definitions are versioned YAML, an edit opens a pull request, and CI generates typed event clients for Ruby, Elm and Haskell — so review, audit and compile-time safety came free, with no new infrastructure.",
 				"Led three language-model upgrades behind automated grading against vendor retirement deadlines, and built the ground-truth evaluation script the pipeline was missing, so later upgrades are repeatable.",
 				"Led the refactor of the assignment tutorial system, remodelling frontend and backend so a new assignment type gets its tutorial and its intro tour without either being rebuilt.",
 				"Built translation and accessibility support for English language learners: a reusable language selection component, speech synthesis, screen-reader pronunciation of embedded foreign text, and right-to-left alignment.",
