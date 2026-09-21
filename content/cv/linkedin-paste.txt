@@ -72,13 +72,16 @@ UNINOVE — Technologist, Systems Analysis and Development (2017–2019)
 ## SKILLS
 Haskell
 Clojure
+ClojureScript
 Elm
-Ruby
+Ruby on Rails
 TypeScript
 PostgreSQL
-Snowflake
+Datomic
 Kafka
 Elasticsearch
+Snowflake
+GraphQL
 Kubernetes
 AWS
 
