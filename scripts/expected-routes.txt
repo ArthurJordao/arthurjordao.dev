@@ -1,5 +1,6 @@
 /
 /about/
+/cv/
 /posts/
 /posts/building-microservices-with-haskell/
 /posts/tmux-tmuxinator-fzf-workflow/
