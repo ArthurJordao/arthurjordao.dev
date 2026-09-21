@@ -19,18 +19,13 @@
 		color-scheme: light;
 	}
 
-	/* Zero page margin, with the margin supplied as padding instead. A browser
-	   draws its own header and footer — the page title, the date, the URL, the
-	   page number — in the @page margin, so with no margin there is nowhere to
-	   draw them and they do not appear. Otherwise they depend on a checkbox in
-	   the print dialog, which differs per browser and is easy to miss. */
 	@page {
-		margin: 0;
+		margin: 1.5cm 1.6cm;
 	}
 
 	body {
 		max-width: none;
-		padding: 1.5cm 1.6cm;
+		padding: 0;
 		font-size: 10pt;
 	}
 
