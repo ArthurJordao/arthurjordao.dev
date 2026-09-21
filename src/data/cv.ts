@@ -149,7 +149,7 @@ export const cv: Cv = {
 			highlights: [
 				"Built the authoring layer for the in-house event platform that now carries all of the company's product analytics into Snowflake and Mitzu. Proposed an editor backed by GitHub over the planned CMS: definitions are versioned YAML, an edit opens a pull request, and CI generates typed event clients for Ruby, Elm and Haskell — so review, audit and compile-time safety came free, with no new infrastructure.",
 				"Led three language-model upgrades behind automated grading against vendor retirement deadlines, and built the ground-truth evaluation script the pipeline was missing, so later upgrades are repeatable.",
-				"Led the refactor of the assignment tutorial system, remodelling frontend and backend so a new assignment type gets its tutorial and its intro tour without either being rebuilt.",
+				"Led the refactor of the assignment tutorial system, remodeling frontend and backend so a new assignment type gets its tutorial and its intro tour without either being rebuilt.",
 				"Built translation and accessibility support for English language learners: a reusable language selection component, speech synthesis, screen-reader pronunciation of embedded foreign text, and right-to-left alignment.",
 				"Integrated a new activity type across every surface it touched, from teacher and student dashboards through to grade sync with Canvas and other LMSs.",
 				"Re-architected the portfolio page: backend pagination, queries narrowed to what the page actually needs, and aggregation moved off the frontend, which had been computing all of it on every load.",
@@ -166,7 +166,7 @@ export const cv: Cv = {
 			summary: "Lending team, on the services that issue and service credit.",
 			highlights: [
 				"Built and ran core lending services as Clojure microservices: account management, renegotiation, issuance and dynamic underwriting.",
-				"Extracted payments out of the personal loan domain into a standalone service. Another team's platform had been charging installments for us, debiting the customer's account on our behalf; as it generalised from lending to credit cards, lending took over its own settlement — boleto and Pix cleared directly with the services that move money, over Kafka and idempotent end to end.",
+				"Extracted payments out of the personal loan domain into a standalone service. Another team's platform had been charging installments for us, debiting the customer's account on our behalf; as it generalized from lending to credit cards, lending took over its own settlement — boleto and Pix cleared directly with the services that move money, over Kafka and idempotent end to end.",
 				"Streamed credit policies into Elasticsearch through Kafka, so the team could monitor credit exposure live.",
 				"Led the online underwriting path in Clojure. Features could depend on other features, so the engine resolved them as a DAG — topologically sorted, each evaluated once its inputs were in hand — until the decision had everything it needed. An applicant it scored as risky could send income proof, which queued a human review before the final answer.",
 				"Built the back-end driven architecture behind the mobile clients: what the Flutter and React Native apps rendered was decided server-side over GraphQL, rather than shipped in an app release.",
@@ -193,7 +193,7 @@ export const cv: Cv = {
 			summary: "Billing systems for a job board.",
 			highlights: [
 				"Integrated new acquirer banks into the billing system, raising charge conversion.",
-				"Modernised the legacy billing code behind it, inside a PHP and Java monolith.",
+				"Modernized the legacy billing code behind it, inside a PHP and Java monolith.",
 			],
 			tech: ["PHP", "Java", "RabbitMQ", "Jenkins", "JavaScript"],
 		},
