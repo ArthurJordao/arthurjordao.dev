@@ -10,6 +10,9 @@
 		"postbuild": "pagefind --site dist",
 		"preview": "astro preview",
 		"check": "astro check && biome check",
+		"check:routes": "./scripts/check-routes.sh",
+		"check:seo": "./scripts/check-seo.sh",
+		"verify": "npm run build && npm run check:routes && npm run check:seo",
 		"lint": "biome check --write",
 		"format": "prettier -w . --cache"
 	},
