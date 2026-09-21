@@ -31,13 +31,13 @@ Location: São Paulo, Brazil
 
 Lending team, on the services that issue and service credit.
 
-• Built and ran core lending services as Clojure microservices: account management, renegotiation, issuance, payments and dynamic underwriting.
+• Built and ran core lending services as Clojure microservices: account management, renegotiation, issuance and dynamic underwriting.
+• Extracted the personal loan domain, payments included, out of the credit platform into a standalone service. The credit platform had been settling and executing payments itself; afterwards we settled boleto and Pix directly with the services that move the money, over Kafka and idempotent end to end.
 • Streamed credit policies into Elasticsearch through Kafka, so the team could monitor credit exposure live.
 • Led the real-time risk analysis work on customer data — drove the architecture, wrote the tech assessments, set expectations with stakeholders.
 • Defined the team's stability index metrics, and the monitoring and alerting behind them.
-• Contributed to Nubank's shared Clojure libraries, and built the backoffice tooling the lending team used daily.
 
-Skills: Clojure, ClojureScript, Kafka, Elasticsearch, Datomic, Kubernetes, GraphQL, AWS, Prometheus
+Skills: Clojure, ClojureScript, Kafka, Elasticsearch, Elasticsearch, Datomic, Kubernetes, GraphQL, AWS, Prometheus
 
 ### Catho
 Title: Software Engineer
