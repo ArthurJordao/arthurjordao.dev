@@ -122,6 +122,7 @@ export const cv: Cv = {
 			summary: "Lending team, on the services that issue and service credit.",
 			highlights: [
 				"Built and ran core lending services as Clojure microservices: account management, renegotiation, issuance, payments and dynamic underwriting.",
+				"Streamed credit policies into Elasticsearch through Kafka, so the team could monitor credit exposure live.",
 				"Led the real-time risk analysis work on customer data — drove the architecture, wrote the tech assessments, set expectations with stakeholders.",
 				"Defined the team's stability index metrics, and the monitoring and alerting behind them.",
 				"Contributed to Nubank's shared Clojure libraries, and built the backoffice tooling the lending team used daily.",
@@ -130,6 +131,7 @@ export const cv: Cv = {
 				"Clojure",
 				"ClojureScript",
 				"Kafka",
+				"Elasticsearch",
 				"Datomic",
 				"Kubernetes",
 				"GraphQL",
