@@ -49,7 +49,7 @@ for (const position of cv.positions) {
 		"",
 		position.summary,
 		"",
-		...position.highlights.map((highlight) => `• ${highlight.area}: ${highlight.detail}`),
+		...position.highlights.map((highlight) => `• ${highlight}`),
 		"",
 		`Skills: ${position.tech.join(", ")}`,
 	);
@@ -61,9 +61,7 @@ for (const entry of cv.education) {
 }
 
 lines.push("", "## SKILLS");
-for (const group of cv.skills) {
-	lines.push(...group.items.map((item) => item));
-}
+lines.push(...cv.skills);
 
 lines.push("", "## LANGUAGES");
 for (const entry of cv.languages) {

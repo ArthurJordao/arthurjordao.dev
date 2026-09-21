@@ -61,57 +61,34 @@
 }
 
 /*
- * Label column via floats rather than CSS grid.
+ * Role bullets. Plain list: the old two-column label layout catalogued the
+ * surfaces a role touched (Backend / Frontend / Ops / Mobile / Web / Data)
+ * rather than what came of it, and gave every role the same shape.
  *
- * Grid is the obvious tool and the wrong one here: Chrome does not fragment
- * grid containers when printing, so the whole list is atomic. A role whose
- * list did not fit the rest of the page pushed the entire list to the next
- * one, leaving a third of a page blank. Floats fragment like normal block
- * flow, breaking between lines.
- *
- * The width is fixed in ch, not max-content, for a second reason: max-content
- * is per-container, so each role got its own label width and the detail
- * column started at a different x on every entry. 10ch clears "Leadership",
- * and monospace makes ch exact.
+ * Kept as block flow rather than grid on purpose — Chrome does not fragment
+ * grid containers when printing, so a list that did not fit the rest of a
+ * page moved to the next one whole and left a third of a page blank.
  */
-.cv-highlights {
+.cv-bullets {
 	margin-top: 0.75rem;
+	padding-left: 1.25rem;
+	list-style: none;
 }
 
-.cv-highlights::after {
-	content: "";
-	display: block;
-	clear: both;
+.cv-bullets li {
+	position: relative;
+	margin-bottom: 0.375rem;
 }
 
-.cv-highlights dt {
-	float: left;
-	clear: left;
-	width: 10ch;
-	font-weight: 700;
-	color: var(--color-accent-2);
+.cv-bullets li::before {
+	content: "\2022";
+	position: absolute;
+	left: -1.25rem;
+	color: var(--color-accent);
 }
 
-.cv-highlights dd {
-	margin: 0 0 0.375rem calc(10ch + 1.25rem);
-}
-
-.cv-highlights dd:last-of-type {
+.cv-bullets li:last-child {
 	margin-bottom: 0;
-}
-
-/* Below roughly a phone's width the two columns stop fitting, so stack them
-   and lean on spacing instead of alignment. */
-@media (max-width: 30rem) {
-	.cv-highlights dt {
-		float: none;
-		width: auto;
-		margin-top: 0.5rem;
-	}
-
-	.cv-highlights dd {
-		margin-left: 0;
-	}
 }
 
 .cv-tech {

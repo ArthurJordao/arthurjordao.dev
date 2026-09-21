@@ -15,12 +15,12 @@ Title: Software Engineer
 Dates: April 2022 - Present
 Location: Remote
 
-Education software. Helped create two new products that made the software work for 3rd to 5th graders, and led two projects on the introduction and tutorial flows for assignments, which meant remodelling parts of both frontend and backend to keep them flexible.
+Education software for classroom writing.
 
-• Backend: Writing and architecting features in Haskell and Ruby on Rails, over Postgres and MySQL.
-• Frontend: Architecting pages needing rich text editing, animation and non-trivial state, in Elm.
-• Ops: Feature monitoring with New Relic and Datadog.
-• Culture: Organise and run the company Haskell book club.
+• Led the refactor of the assignment tutorial system, remodelling frontend and backend so new assignment types could reuse it.
+• Built the paragraph-building assignment type for 6th grade and up, and adapted assignments down to 3rd.
+• Revamped the introductory tour students meet when they open an assignment.
+• Run the company Haskell book club.
 
 Skills: Haskell, Elm, Ruby on Rails, PostgreSQL, MySQL, Datadog
 
@@ -29,14 +29,12 @@ Title: Senior Software Engineer
 Dates: July 2019 - April 2022
 Location: São Paulo, Brazil
 
-Engineer on the lending team, developing and leading features to scale the product. Built core services across the lending infrastructure: account management, renegotiation, issuance, payments, risk management and dynamic underwriting.
+Lending team, on the services that issue and service credit.
 
-• Backend: Microservices in Clojure with Kafka, Datomic, Kubernetes, Tekton, GraphQL and AWS; contributed to Nubank's shared Clojure libraries.
-• Ops: Monitoring, debugging, right-sizing and alerting with Splunk, Prometheus and Grafana. Defined the team's stability index metrics.
-• Mobile: Back-end driven architecture for Flutter and React Native clients over GraphQL.
-• Web: Internal backoffice tooling in ClojureScript, Pathom, Fulcro and TypeScript.
-• Data: Monitoring dashboards and KPIs with Looker, Databricks and BigQuery.
-• Leadership: Led projects using customer data for real-time risk analysis: drove the architecture decisions, wrote the tech assessments and set expectations with stakeholders.
+• Built and ran core lending services as Clojure microservices: account management, renegotiation, issuance, payments and dynamic underwriting.
+• Led the real-time risk analysis work on customer data — drove the architecture, wrote the tech assessments, set expectations with stakeholders.
+• Defined the team's stability index metrics, and the monitoring and alerting behind them.
+• Contributed to Nubank's shared Clojure libraries, and built the backoffice tooling the lending team used daily.
 
 Skills: Clojure, ClojureScript, Kafka, Datomic, Kubernetes, GraphQL, AWS, Prometheus
 
@@ -45,9 +43,10 @@ Title: Software Engineer
 Dates: May 2018 - June 2019
 Location: Barueri, Brazil
 
-Billing solutions: integrated new acquirer banks to improve charge conversion, and modernised the legacy system behind it.
+Billing systems for a recruitment marketplace.
 
-• Backend: Features for a monolith in PHP and Java, with RabbitMQ, Jenkins and JavaScript.
+• Integrated new acquirer banks into the billing system, raising charge conversion.
+• Modernised the legacy billing code behind it, inside a PHP and Java monolith.
 
 Skills: PHP, Java, RabbitMQ, Jenkins, JavaScript
 
@@ -56,9 +55,10 @@ Title: Software Engineer
 Dates: November 2017 - May 2018
 Location: São Paulo, Brazil
 
-Advanced technology and architecture team, building high-availability fraud detection systems on serverless infrastructure with AI techniques.
+Fraud detection, on the advanced technology and architecture team.
 
-• Backend: Microservices on AWS serverless: DynamoDB, Lambda, SQS, SNS, CloudWatch and API Gateway, in Java.
+• Built fraud detection services on AWS serverless, designed for high availability.
+• Applied AI techniques to detection, on the advanced technology and architecture team.
 
 Skills: Java, AWS Lambda, DynamoDB, SQS, SNS, API Gateway
 
@@ -72,17 +72,9 @@ Elm
 Ruby
 TypeScript
 PostgreSQL
-MySQL
-Datomic
 Kafka
-AWS
 Kubernetes
-GraphQL
-Datadog
-New Relic
-Prometheus
-Grafana
-Splunk
+AWS
 
 ## LANGUAGES
 Portuguese — Native

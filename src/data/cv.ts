@@ -38,8 +38,13 @@ export interface CvPosition {
 	end: CvMonth | null;
 	location: string;
 	summary: string;
-	/** Grouped by discipline, the shape Curriculum.docx already used. */
-	highlights: { area: string; detail: string }[];
+	/**
+	 * What the role delivered, one entry each. Deliberately not grouped by
+	 * discipline the way Curriculum.docx and the LinkedIn profile group it:
+	 * that taxonomy catalogues the surfaces a role touched rather than what
+	 * came of it, and it gave every role the same shape.
+	 */
+	highlights: string[];
 	/**
 	 * The scannable index of the role. Overlaps with what the highlights name
 	 * in prose, deliberately: the bullets are read, these are skimmed. Keep it
@@ -56,11 +61,6 @@ export interface CvEducation {
 	end: string;
 }
 
-export interface CvSkillGroup {
-	label: string;
-	items: string[];
-}
-
 export interface CvLanguage {
 	language: string;
 	level: string;
@@ -71,7 +71,13 @@ export interface Cv {
 	summary: string;
 	positions: CvPosition[];
 	education: CvEducation[];
-	skills: CvSkillGroup[];
+	/**
+	 * One general line, not a breakdown by category. The per-role chips
+	 * already say where each thing was used, so a categorised list here only
+	 * repeats them without the context — which is what made this page read
+	 * like a LinkedIn profile.
+	 */
+	skills: string[];
 	languages: CvLanguage[];
 }
 
@@ -98,27 +104,12 @@ export const cv: Cv = {
 			start: "2022-04",
 			end: null,
 			location: "Remote",
-			summary:
-				"Education software. Helped create two new products that made the software work for " +
-				"3rd to 5th graders, and led two projects on the introduction and tutorial flows for " +
-				"assignments, which meant remodelling parts of both frontend and backend to keep them " +
-				"flexible.",
+			summary: "Education software for classroom writing.",
 			highlights: [
-				{
-					area: "Backend",
-					detail:
-						"Writing and architecting features in Haskell and Ruby on Rails, over Postgres and MySQL.",
-				},
-				{
-					area: "Frontend",
-					detail:
-						"Architecting pages needing rich text editing, animation and non-trivial state, in Elm.",
-				},
-				{ area: "Ops", detail: "Feature monitoring with New Relic and Datadog." },
-				{
-					area: "Culture",
-					detail: "Organise and run the company Haskell book club.",
-				},
+				"Led the refactor of the assignment tutorial system, remodelling frontend and backend so new assignment types could reuse it.",
+				"Built the paragraph-building assignment type for 6th grade and up, and adapted assignments down to 3rd.",
+				"Revamped the introductory tour students meet when they open an assignment.",
+				"Run the company Haskell book club.",
 			],
 			tech: ["Haskell", "Elm", "Ruby on Rails", "PostgreSQL", "MySQL", "Datadog"],
 		},
@@ -128,41 +119,12 @@ export const cv: Cv = {
 			start: "2019-07",
 			end: "2022-04",
 			location: "São Paulo, Brazil",
-			summary:
-				"Engineer on the lending team, developing and leading features to scale the product. " +
-				"Built core services across the lending infrastructure: account management, " +
-				"renegotiation, issuance, payments, risk management and dynamic underwriting.",
+			summary: "Lending team, on the services that issue and service credit.",
 			highlights: [
-				{
-					area: "Backend",
-					detail:
-						"Microservices in Clojure with Kafka, Datomic, Kubernetes, Tekton, GraphQL and AWS; " +
-						"contributed to Nubank's shared Clojure libraries.",
-				},
-				{
-					area: "Ops",
-					detail:
-						"Monitoring, debugging, right-sizing and alerting with Splunk, Prometheus and Grafana. " +
-						"Defined the team's stability index metrics.",
-				},
-				{
-					area: "Mobile",
-					detail: "Back-end driven architecture for Flutter and React Native clients over GraphQL.",
-				},
-				{
-					area: "Web",
-					detail: "Internal backoffice tooling in ClojureScript, Pathom, Fulcro and TypeScript.",
-				},
-				{
-					area: "Data",
-					detail: "Monitoring dashboards and KPIs with Looker, Databricks and BigQuery.",
-				},
-				{
-					area: "Leadership",
-					detail:
-						"Led projects using customer data for real-time risk analysis: drove the architecture " +
-						"decisions, wrote the tech assessments and set expectations with stakeholders.",
-				},
+				"Built and ran core lending services as Clojure microservices: account management, renegotiation, issuance, payments and dynamic underwriting.",
+				"Led the real-time risk analysis work on customer data — drove the architecture, wrote the tech assessments, set expectations with stakeholders.",
+				"Defined the team's stability index metrics, and the monitoring and alerting behind them.",
+				"Contributed to Nubank's shared Clojure libraries, and built the backoffice tooling the lending team used daily.",
 			],
 			tech: [
 				"Clojure",
@@ -181,14 +143,10 @@ export const cv: Cv = {
 			start: "2018-05",
 			end: "2019-06",
 			location: "Barueri, Brazil",
-			summary:
-				"Billing solutions: integrated new acquirer banks to improve charge conversion, and " +
-				"modernised the legacy system behind it.",
+			summary: "Billing systems for a recruitment marketplace.",
 			highlights: [
-				{
-					area: "Backend",
-					detail: "Features for a monolith in PHP and Java, with RabbitMQ, Jenkins and JavaScript.",
-				},
+				"Integrated new acquirer banks into the billing system, raising charge conversion.",
+				"Modernised the legacy billing code behind it, inside a PHP and Java monolith.",
 			],
 			tech: ["PHP", "Java", "RabbitMQ", "Jenkins", "JavaScript"],
 		},
@@ -198,15 +156,10 @@ export const cv: Cv = {
 			start: "2017-11",
 			end: "2018-05",
 			location: "São Paulo, Brazil",
-			summary:
-				"Advanced technology and architecture team, building high-availability fraud detection " +
-				"systems on serverless infrastructure with AI techniques.",
+			summary: "Fraud detection, on the advanced technology and architecture team.",
 			highlights: [
-				{
-					area: "Backend",
-					detail:
-						"Microservices on AWS serverless: DynamoDB, Lambda, SQS, SNS, CloudWatch and API Gateway, in Java.",
-				},
+				"Built fraud detection services on AWS serverless, designed for high availability.",
+				"Applied AI techniques to detection, on the advanced technology and architecture team.",
 			],
 			tech: ["Java", "AWS Lambda", "DynamoDB", "SQS", "SNS", "API Gateway"],
 		},
@@ -220,14 +173,15 @@ export const cv: Cv = {
 		},
 	],
 	skills: [
-		// Not "Languages": the spoken-language section below already owns that word.
-		{ label: "Programming", items: ["Haskell", "Clojure", "Elm", "Ruby", "TypeScript"] },
-		{ label: "Data", items: ["PostgreSQL", "MySQL", "Datomic", "Kafka"] },
-		{ label: "Infrastructure", items: ["AWS", "Kubernetes", "GraphQL"] },
-		{
-			label: "Observability",
-			items: ["Datadog", "New Relic", "Prometheus", "Grafana", "Splunk"],
-		},
+		"Haskell",
+		"Clojure",
+		"Elm",
+		"Ruby",
+		"TypeScript",
+		"PostgreSQL",
+		"Kafka",
+		"Kubernetes",
+		"AWS",
 	],
 	languages: [
 		{ language: "Portuguese", level: "Native" },

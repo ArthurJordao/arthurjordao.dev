@@ -50,14 +50,11 @@ const short = (url: string) => url.replace(/^https:\/\/(www\.)?/, "").replace(/\
 							{position.company} · {position.location}
 						</p>
 						<p class="cv-entry-summary">{position.summary}</p>
-						<dl class="cv-highlights">
+						<ul class="cv-bullets">
 							{position.highlights.map((highlight) => (
-								<>
-									<dt>{highlight.area}</dt>
-									<dd>{highlight.detail}</dd>
-								</>
+								<li>{highlight}</li>
 							))}
-						</dl>
+						</ul>
 						<ul class="cv-tech">
 							{position.tech.map((item) => (
 								<li>{item}</li>
@@ -87,16 +84,7 @@ const short = (url: string) => url.replace(/^https:\/\/(www\.)?/, "").replace(/\
 
 		<section class="cv-section">
 			<h2 class="cv-section-title">Skills</h2>
-			<dl class="cv-list">
-				{
-					cv.skills.map((group) => (
-						<>
-							<dt>{group.label}</dt>
-							<dd>{group.items.join(", ")}</dd>
-						</>
-					))
-				}
-			</dl>
+			<p>{cv.skills.join(", ")}</p>
 		</section>
 
 		<section class="cv-section">
