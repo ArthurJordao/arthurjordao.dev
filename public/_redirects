@@ -1,1 +1,5 @@
 /index.xml  /rss.xml  301
+# The Hugo site served its sitemap here, and that path is still submitted in
+# Search Console and linked from elsewhere. Astro's sitemap integration emits
+# an index instead, so point the old path at it rather than serving a 404.
+/sitemap.xml  /sitemap-index.xml  301
