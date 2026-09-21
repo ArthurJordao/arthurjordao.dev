@@ -59,7 +59,7 @@
 	}
 
 	&.gh-loading {
-		.gh-title .gh-avatar,
+		.gh-avatar,
 		.gh-description,
 		.gh-chips span {
 			@apply bg-global-text/50 animate-pulse rounded-xl text-transparent;
