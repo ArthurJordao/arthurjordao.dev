@@ -6,6 +6,16 @@ import "@/styles/print.css";
 
 const meta = {
 	description: `CV of Arthur Jordão — ${cv.basics.title}, ${cv.basics.tagline}.`,
+	/**
+	 * The browser names the printed PDF after the document title, so this one
+	 * is written to be a filename: no middle dot, no em dash, no accent. Upload
+	 * forms on job sites reject those more often than they should.
+	 *
+	 * Losing the accent costs nothing here. The page's h1 and its schema.org
+	 * Person both carry "Jordão", and siteConfig.alternateName already exists
+	 * because the unaccented spelling is the one people type.
+	 */
+	seoTitle: "Arthur Jordao - CV",
 	title: "CV",
 };
 
