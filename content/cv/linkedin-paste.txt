@@ -46,7 +46,7 @@ Title: Software Engineer
 Dates: May 2018 - June 2019
 Location: Barueri, Brazil
 
-Billing systems for a recruitment marketplace.
+Billing systems for a job board.
 
 • Integrated new acquirer banks into the billing system, raising charge conversion.
 • Modernised the legacy billing code behind it, inside a PHP and Java monolith.
@@ -61,7 +61,7 @@ Location: São Paulo, Brazil
 Fraud detection, on the advanced technology and architecture team.
 
 • Built fraud detection services on AWS serverless, designed for high availability.
-• Applied AI techniques to detection, on the advanced technology and architecture team.
+• Integrated third-party ML APIs into the detection flow: liveness checks, credit risk scoring and document verification.
 
 Skills: Java, AWS Lambda, DynamoDB, SQS, SNS, API Gateway
 

@@ -146,7 +146,7 @@ export const cv: Cv = {
 			start: "2018-05",
 			end: "2019-06",
 			location: "Barueri, Brazil",
-			summary: "Billing systems for a recruitment marketplace.",
+			summary: "Billing systems for a job board.",
 			highlights: [
 				"Integrated new acquirer banks into the billing system, raising charge conversion.",
 				"Modernised the legacy billing code behind it, inside a PHP and Java monolith.",
@@ -162,7 +162,7 @@ export const cv: Cv = {
 			summary: "Fraud detection, on the advanced technology and architecture team.",
 			highlights: [
 				"Built fraud detection services on AWS serverless, designed for high availability.",
-				"Applied AI techniques to detection, on the advanced technology and architecture team.",
+				"Integrated third-party ML APIs into the detection flow: liveness checks, credit risk scoring and document verification.",
 			],
 			tech: ["Java", "AWS Lambda", "DynamoDB", "SQS", "SNS", "API Gateway"],
 		},
