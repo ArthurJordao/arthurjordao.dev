@@ -17,7 +17,7 @@ Location: Remote
 
 Education software for classroom writing.
 
-• Replaced a planned database-backed CMS with a GitHub-backed editor: definitions live as versioned YAML and an edit opens a pull request, so review and audit came free and no new infrastructure was needed. Validated it as a proof of concept, shipped two weeks later, and non-engineers now author through it in production.
+• Built the authoring layer for the in-house event platform that carries the company's product analytics into Snowflake and Mitzu. Proposed a GitHub-backed editor over the planned database-backed CMS: event definitions are versioned YAML and an edit opens a pull request, so review and audit came free with no new infrastructure, and non-engineers define events through it in production.
 • Led three language-model upgrades behind automated grading, against vendor retirement deadlines — running prompts against ground-truth datasets, checking score alignment, and translating between model behaviour and what the curriculum team needed pedagogically.
 • Built the ground-truth evaluation script the moderation pipeline was missing, so later model upgrades are a repeatable process rather than a research project each time.
 • Took a core writing-submission feature end to end — API, UI, tests, metrics, launch and post-release monitoring. The metrics showed teachers extending assignment due dates less often within the first month.
@@ -74,6 +74,7 @@ Elm
 Ruby
 TypeScript
 PostgreSQL
+Snowflake
 Kafka
 Kubernetes
 AWS
