@@ -13,12 +13,13 @@
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname } from "node:path";
-import { cv, skills } from "../src/data/cv.ts";
+import { cv, parseMonth, skills } from "../src/data/cv.ts";
 
 const OUT = "content/cv/linkedin-paste.txt";
 
+/** Month spelled out, which is the form LinkedIn's own date fields show. */
 const formatMonth = (month: string) =>
-	new Date(`${month}-01T00:00:00Z`).toLocaleDateString("en-US", {
+	parseMonth(month).toLocaleDateString("en-US", {
 		month: "long",
 		timeZone: "UTC",
 		year: "numeric",
@@ -51,7 +52,7 @@ for (const position of cv.positions) {
 		"",
 		...position.highlights.map((highlight) => `• ${highlight}`),
 		"",
-		`Skills: ${position.tech.join(", ")}`,
+		`Skills: ${[...new Set(position.tech)].join(", ")}`,
 	);
 }
 

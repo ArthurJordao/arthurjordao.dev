@@ -2,7 +2,7 @@ import type { AstroExpressiveCodeOptions } from "astro-expressive-code";
 import type { SiteConfig } from "@/types";
 // Relative, not the "@/" alias: astro.config.ts imports this file, and at
 // config-load time the tsconfig path alias is not resolved yet. The
-// `import type` below survives it only because types are erased at runtime.
+// `import type` is exempt: types are erased before the alias is resolved.
 import { cv } from "./data/cv";
 
 export const siteConfig: SiteConfig = {

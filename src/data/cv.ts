@@ -4,12 +4,10 @@
  * Three consumers depend on this:
  *   - src/pages/cv.astro renders it at /cv
  *   - scripts/cv-linkedin.ts turns it into content/cv/linkedin-paste.txt
- *   - src/site.config.ts derives schema.org jobTitle and worksFor from it
+ *   - src/site.config.ts derives its schema.org jobTitle from it
  *
- * There is no automated path to LinkedIn in either direction: profile writes
- * need their partner programme, and the data export is a slow ZIP of CSVs
- * rather than an API. So this file is authored here and pushed to LinkedIn by
- * hand, with the generated paste file scoping that work to what changed.
+ * LinkedIn has no API for this, so the profile is updated by hand from the
+ * generated paste file, which scopes that work to whatever changed.
  *
  * The phone number that appears in the .docx version of this CV is
  * deliberately absent. This page is public and indexed.
@@ -18,11 +16,6 @@
 /** Month precision, "YYYY-MM", matching how LinkedIn stores dates. */
 export type CvMonth = `${number}-${number}`;
 
-/**
- * Whole years since a month, spelled out, floored. The summary states how
- * long the Haskell has been in production; computing it means it cannot go
- * stale between rebuilds.
- */
 const YEAR_WORDS = [
 	"Zero",
 	"One",
@@ -37,8 +30,22 @@ const YEAR_WORDS = [
 	"Ten",
 ];
 
+/**
+ * `CvMonth` is a template literal type, so it admits "2022-4" and worse. An
+ * unpadded or malformed month reaches Date as NaN and renders as the literal
+ * "Invalid Date", or as "NaN years", with the build still green — so parsing
+ * goes through here and throws instead.
+ */
+export function parseMonth(month: string): Date {
+	if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(month)) {
+		throw new Error(`src/data/cv.ts: "${month}" is not a YYYY-MM month.`);
+	}
+	return new Date(`${month}-01T00:00:00Z`);
+}
+
+/** Whole years since a month, spelled out, floored. */
 function yearsSince(month: CvMonth): string {
-	const start = new Date(`${month}-01T00:00:00Z`);
+	const start = parseMonth(month);
 	const now = new Date();
 	let years = now.getUTCFullYear() - start.getUTCFullYear();
 	if (now.getUTCMonth() < start.getUTCMonth()) years -= 1;
@@ -54,7 +61,6 @@ export interface CvBasics {
 	email: string;
 	github: string;
 	linkedin: string;
-	site: string;
 }
 
 export interface CvPosition {
@@ -105,7 +111,6 @@ export const cv: Cv = {
 		email: "hi@arthurjordao.dev",
 		github: "https://github.com/ArthurJordao",
 		linkedin: "https://www.linkedin.com/in/arthurjordao/",
-		site: "https://arthurjordao.dev",
 	},
 	summary:
 		"Self-taught software engineer. " +
@@ -149,7 +154,6 @@ export const cv: Cv = {
 				"Clojure",
 				"ClojureScript",
 				"Kafka",
-				"Elasticsearch",
 				"Elasticsearch",
 				"Datomic",
 				"Kubernetes",
@@ -201,9 +205,10 @@ export const cv: Cv = {
 };
 
 /**
- * The skills line, derived so it cannot list anything no role accounts for.
+ * Every technology across every role, oldest jobs included, in role order.
+ * To change what appears, or in what order, edit the roles' `tech`.
  *
- * It carries every technology in every role, oldest jobs included, in role
- * order. To change what appears or in what order, edit the roles' `tech`.
+ * The Set means a duplicate across two roles is invisible here but still
+ * ships to LinkedIn, which renders each role's `tech` unmerged.
  */
 export const skills: string[] = [...new Set(cv.positions.flatMap((position) => position.tech))];

@@ -13,7 +13,8 @@
 		"check:routes": "./scripts/check-routes.sh",
 		"check:seo": "./scripts/check-seo.sh",
 		"check:cv": "./scripts/check-cv.sh",
-		"verify": "npm run build && npm run check:routes && npm run check:seo && npm run check:cv",
+		"check:paste": "npm run cv:linkedin && git diff --exit-code content/cv/",
+		"verify": "npm run build && npm run check:routes && npm run check:seo && npm run check:cv && npm run check:paste",
 		"lint": "biome check --write",
 		"format": "prettier -w . --cache",
 		"cv:linkedin": "tsx scripts/cv-linkedin.ts"

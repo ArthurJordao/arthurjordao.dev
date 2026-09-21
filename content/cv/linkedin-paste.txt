@@ -40,7 +40,7 @@ Lending team, on the services that issue and service credit.
 • Led the online underwriting path in Clojure. Features could depend on other features, so the engine resolved them as a DAG — topologically sorted, each evaluated once its inputs were in hand — until the decision had everything it needed. An applicant it scored as risky could send income proof, which queued a human review before the final answer.
 • Defined the team's stability index metrics, and the monitoring and alerting behind them.
 
-Skills: Clojure, ClojureScript, Kafka, Elasticsearch, Elasticsearch, Datomic, Kubernetes, GraphQL, TypeScript, AWS, Prometheus
+Skills: Clojure, ClojureScript, Kafka, Elasticsearch, Datomic, Kubernetes, GraphQL, TypeScript, AWS, Prometheus
 
 ### Catho
 Title: Software Engineer

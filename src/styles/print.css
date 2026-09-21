@@ -33,19 +33,13 @@
 	   imported unlayered, and unlayered rules outrank every @layer, including
 	   the Tailwind utilities that set these elements' display. */
 	#main-header,
-	footer,
-	.skip-link {
+	footer {
 		display: none;
 	}
 
-	/* Let a long role flow across a page break; what must never split is the
-	   header that identifies it. Forbidding the break on the whole entry looks
-	   tidier in principle and wastes half a page in practice: a tall role that
-	   does not fit the remainder gets pushed whole to the next page. */
-	.cv-entry {
-		break-inside: auto;
-	}
-
+	/* A long role may split across pages; only its header must not. Forbidding
+	   the break on the whole entry pushes a tall role overleaf whole and leaves
+	   the rest of the page empty. */
 	.cv-entry-head {
 		break-inside: avoid;
 	}
@@ -63,14 +57,5 @@
 	dd {
 		orphans: 3;
 		widows: 3;
-	}
-
-	/* On paper a link is only useful if its target is printed with it. Scoped
-	   to links inside an entry: the contact row already shows its URLs as the
-	   link text, so expanding those would print each one twice. */
-	.cv-entry a[href^="http"]::after {
-		content: " (" attr(href) ")";
-		font-size: 0.85em;
-		word-break: break-all;
 	}
 }

@@ -59,9 +59,9 @@
 }
 
 /*
- * Block flow, not grid or flex: Chrome does not fragment those containers
- * when printing, so a list too tall for the rest of a page moves to the next
- * one whole and leaves the remainder blank.
+ * Do not give this `display: grid` or `flex`. Chrome does not fragment those
+ * containers when printing, so a list too tall for the rest of a page moves
+ * to the next one whole and leaves the remainder blank.
  */
 .cv-bullets {
 	margin-top: 0.75rem;
@@ -91,8 +91,7 @@
 	clear: both;
 }
 
-/* Floats rather than grid, for the print reason above. 11ch clears
-   "Portuguese", the longest label this list holds. */
+/* 11ch clears "Portuguese", the longest label this list holds. */
 .cv-list dt {
 	float: left;
 	clear: left;

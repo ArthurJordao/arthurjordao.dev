@@ -32,10 +32,10 @@ else
   echo "OK: no phone number anywhere in dist/"
 fi
 
-if grep -q 'arthurbernardijordao@gmail' "$PAGE"; then
-  fail "the personal gmail is on the CV page; use hi@arthurjordao.dev"
+if grep -rq 'arthurbernardijordao@gmail' "$DIST"; then
+  fail "the personal gmail leaked into dist/; use hi@arthurjordao.dev"
 else
-  echo "OK: CV page uses the public address"
+  echo "OK: no personal gmail anywhere in dist/"
 fi
 
 grep -q 'hi@arthurjordao.dev' "$PAGE" || fail "no contact address on the CV page"
@@ -47,7 +47,7 @@ done
 
 # "Senior Software Engineer" is Nubank's real title and NoRedInk's wrong one,
 # so the assertion is on the count, not on presence.
-senior_count=$(grep -o 'Senior Software Engineer' "$PAGE" | wc -l | tr -d ' ')
+senior_count=$(grep -c 'Senior Software Engineer' "$PAGE" || true)
 if [ "$senior_count" != "1" ]; then
   fail "expected 'Senior Software Engineer' exactly once (Nubank), found $senior_count"
 else
@@ -55,9 +55,13 @@ else
 fi
 
 grep -q 'UNINOVE' "$PAGE" || fail "UNINOVE missing from education"
-for dropped in Udacity Filad Spring EJB; do
-  if grep -q "$dropped" "$PAGE"; then
-    fail "'$dropped' is on the CV page but the spec dropped it"
+# Education and certifications deliberately left off: the Udacity nanodegree
+# and the secondary school, and the Java/Spring mini-certifications from
+# before 2018. Matched whole-word, so a future mention of Spring the framework
+# in a role is what trips this, not the word inside another.
+for dropped in Udacity Filadelfia Spring EJB; do
+  if grep -qw "$dropped" "$PAGE"; then
+    fail "'$dropped' is on the CV page; it was left off deliberately"
   fi
 done
 
@@ -79,14 +83,19 @@ fi
 
 # The regression most likely to ship unnoticed: the reader last toggled dark
 # mode, and that is what the print dialog captures. The override has to name
-# the dark theme explicitly to outrank it, so assert it survives edits.
-print_block=$(sed -n '/@media print/,/^}/p' "$PAGE")
-if [ "$found_print" = "1" ]; then
-  case "$print_block" in
-    *'data-theme=\"dark\"'*|*"data-theme='dark'"*|*'data-theme=dark'*)
-      echo "OK: print rules override the dark theme" ;;
-    *) fail "print rules do not override data-theme=dark; a dark CV will print" ;;
-  esac
+# the dark theme explicitly to outrank it.
+#
+# Asserted against the stylesheet source rather than the built page. In the
+# page the rules are minified onto one line, so there is no reliable way to
+# tell where the @media print block ends, and a looser match silently passes
+# on any `data-theme=dark` elsewhere in the document.
+PRINT_CSS="src/styles/print.css"
+if [ ! -f "$PRINT_CSS" ]; then
+  fail "no $PRINT_CSS"
+elif awk '/@media print/{inside=1} inside && /data-theme/{found=1} END{exit !found}' "$PRINT_CSS"; then
+  echo "OK: print rules override the dark theme"
+else
+  fail "print rules do not override data-theme=dark; a dark CV will print"
 fi
 
 # --- LinkedIn paste file --------------------------------------------------
@@ -94,14 +103,16 @@ if [ ! -f "$PASTE" ]; then
   fail "no $PASTE - run 'npm run cv:linkedin'"
 else
   # LinkedIn's own field limits. Pasting past them truncates silently.
-  # Written in awk rather than `head -n -1`, which is a GNU extension that BSD
-  # head on macOS rejects.
   about_len=$(awk '/^## ABOUT$/{s=1;next} /^## /{s=0} s{n+=length($0)+1} END{print n+0}' "$PASTE")
   [ "$about_len" -le 2600 ] || fail "ABOUT section is $about_len chars, LinkedIn caps at 2600"
+  # Counting starts at the first role: everything before it is the file's own
+  # header plus the ABOUT section, which has its own, larger limit.
   longest=$(awk '
+    /^## EXPERIENCE$/{started=1; n=0; next}
+    !started{next}
     /^## EDUCATION$/{if(n>m)m=n; exit}
     /^### /{if(n>m)m=n; n=0; next}
-    /^(Title|Dates|Location): /{next}
+    /^(Title|Dates|Location|Skills): /{next}
     {n+=length($0)+1}
     END{if(n>m)m=n; print m+0}' "$PASTE")
   [ "$longest" -le 2000 ] || fail "a position description is $longest chars, LinkedIn caps at 2000"

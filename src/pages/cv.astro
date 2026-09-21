@@ -1,5 +1,5 @@
 ---
-import { cv, skills } from "@/data/cv";
+import { cv, parseMonth, skills } from "@/data/cv";
 import PageLayout from "@/layouts/Base.astro";
 import "@/styles/cv.css";
 import "@/styles/print.css";
@@ -9,9 +9,13 @@ const meta = {
 	title: "CV",
 };
 
-/** "2022-04" -> "Apr 2022". A CV wants month precision, not the site's day format. */
+/**
+ * "2022-04" -> "Apr 2022". Short form here, because the page is dense; the
+ * LinkedIn paste file in scripts/cv-linkedin.ts spells the month out, because
+ * that is the form LinkedIn's own fields show. Keep the two in step.
+ */
 const formatMonth = (month: string) =>
-	new Date(`${month}-01T00:00:00Z`).toLocaleDateString("en-US", {
+	parseMonth(month).toLocaleDateString("en-US", {
 		month: "short",
 		timeZone: "UTC",
 		year: "numeric",
@@ -20,12 +24,12 @@ const formatMonth = (month: string) =>
 const range = (start: string, end: string | null) =>
 	`${formatMonth(start)} — ${end ? formatMonth(end) : "Present"}`;
 
-/** Strip the scheme so a printed link reads as a label, not as a URL bar. */
+/** Strip the scheme so a link reads as a label rather than a URL bar. */
 const short = (url: string) => url.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "");
 ---
 
 <PageLayout meta={meta}>
-	<article class="cv">
+	<article>
 		<h1 class="title mb-1">{cv.basics.name}</h1>
 		<p class="text-accent-2">{cv.basics.title} · {cv.basics.tagline}</p>
 		<ul class="text-muted mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs">
