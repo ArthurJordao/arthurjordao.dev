@@ -1,5 +1,9 @@
 import type { AstroExpressiveCodeOptions } from "astro-expressive-code";
 import type { SiteConfig } from "@/types";
+// Relative, not the "@/" alias: astro.config.ts imports this file, and at
+// config-load time the tsconfig path alias is not resolved yet. The
+// `import type` below survives it only because types are erased at runtime.
+import { cv } from "./data/cv";
 
 export const siteConfig: SiteConfig = {
 	// ! Please remember to replace the following site property with your own domain, used in astro.config.ts
@@ -20,7 +24,9 @@ export const siteConfig: SiteConfig = {
 	// They exist to answer one question for a search engine: of the several
 	// people named Arthur Jordão, which one is this domain about?
 	alternateName: "Arthur Jordao",
-	jobTitle: "Software Engineer",
+	// Derived so the job title is stated once. The LinkedIn headline overstates
+	// it as "Senior Software Engineer"; src/data/cv.ts holds the settled value.
+	jobTitle: cv.basics.title,
 	employer: { name: "NoRedInk", url: "https://www.noredink.com/" },
 	knowsAbout: ["Haskell", "Clojure", "Elm", "Functional programming"],
 	profileImage: "/images/pp.webp",
