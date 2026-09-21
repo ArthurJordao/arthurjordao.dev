@@ -19,7 +19,7 @@ Education software for classroom writing.
 
 • Built the authoring layer for the in-house event platform that now carries all of the company's product analytics into Snowflake and Mitzu. Proposed a GitHub-backed editor over the planned CMS: definitions are versioned YAML, an edit opens a pull request, and CI generates typed event clients for Ruby, Elm and Haskell — so review, audit and compile-time safety came free, with no new infrastructure.
 • Led three language-model upgrades behind automated grading against vendor retirement deadlines, and built the ground-truth evaluation script the pipeline was missing, so later upgrades are repeatable.
-• Owned a writing-submission feature end to end — API, UI, tests, metrics, launch and monitoring. It lets teachers submit outstanding student work themselves instead of pushing the due date back, and due-date extensions dropped in its first month.
+• Led the refactor of the assignment tutorial system, remodelling frontend and backend so a new assignment type gets its tutorial and its intro tour without either being rebuilt.
 • Built translation and accessibility support for English language learners: a reusable language selection component, speech synthesis, screen-reader pronunciation of embedded foreign text, and right-to-left alignment.
 
 Skills: Haskell, Elm, Ruby on Rails, PostgreSQL, MySQL, Datadog
