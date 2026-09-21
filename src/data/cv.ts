@@ -216,6 +216,7 @@ export const cv: Cv = {
 		"Ruby on Rails",
 		"TypeScript",
 		"PostgreSQL",
+		"MySQL",
 		"Datomic",
 		"Kafka",
 		"Elasticsearch",
