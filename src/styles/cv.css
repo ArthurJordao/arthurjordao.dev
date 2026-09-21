@@ -60,39 +60,57 @@
 	margin-top: 0.625rem;
 }
 
-/* Fixed label column. Monospace aligns it for free, which is the one thing
-   this typeface gives a CV that a proportional face would not. */
+/*
+ * Label column via floats rather than CSS grid.
+ *
+ * Grid is the obvious tool and the wrong one here: Chrome does not fragment
+ * grid containers when printing, so the whole list is atomic. A role whose
+ * list did not fit the rest of the page pushed the entire list to the next
+ * one, leaving a third of a page blank. Floats fragment like normal block
+ * flow, breaking between lines.
+ *
+ * The width is fixed in ch, not max-content, for a second reason: max-content
+ * is per-container, so each role got its own label width and the detail
+ * column started at a different x on every entry. 10ch clears "Leadership",
+ * and monospace makes ch exact.
+ */
 .cv-highlights {
-	display: grid;
-	/* Fixed in ch, not max-content: max-content is computed per grid, so every
-	   role got its own label width and the detail column started at a
-	   different x on each entry. 10ch clears "Leadership", the longest label,
-	   and monospace makes ch exact. */
-	grid-template-columns: 10ch 1fr;
-	column-gap: 1.25rem;
-	row-gap: 0.375rem;
 	margin-top: 0.75rem;
 }
 
+.cv-highlights::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
 .cv-highlights dt {
+	float: left;
+	clear: left;
+	width: 10ch;
 	font-weight: 700;
 	color: var(--color-accent-2);
 }
 
 .cv-highlights dd {
-	margin: 0;
+	margin: 0 0 0.375rem calc(10ch + 1.25rem);
+}
+
+.cv-highlights dd:last-of-type {
+	margin-bottom: 0;
 }
 
 /* Below roughly a phone's width the two columns stop fitting, so stack them
    and lean on spacing instead of alignment. */
 @media (max-width: 30rem) {
-	.cv-highlights {
-		grid-template-columns: 1fr;
-		row-gap: 0.125rem;
+	.cv-highlights dt {
+		float: none;
+		width: auto;
+		margin-top: 0.5rem;
 	}
 
-	.cv-highlights dt {
-		margin-top: 0.5rem;
+	.cv-highlights dd {
+		margin-left: 0;
 	}
 }
 
@@ -113,31 +131,38 @@
 	font-size: 0.75rem;
 }
 
-.cv-list {
-	display: grid;
-	/* Same reasoning as .cv-highlights; 14ch clears "Observability". Skills and
-	   Languages are separate grids, so max-content would misalign them too. */
-	grid-template-columns: 14ch 1fr;
-	column-gap: 1.25rem;
-	row-gap: 0.5rem;
+.cv-list::after {
+	content: "";
+	display: block;
+	clear: both;
 }
 
+/* Same float model and same reasoning as .cv-highlights; 14ch clears
+   "Observability". */
 .cv-list dt {
+	float: left;
+	clear: left;
+	width: 14ch;
 	font-weight: 700;
 	color: var(--color-accent-2);
 }
 
 .cv-list dd {
-	margin: 0;
+	margin: 0 0 0.5rem calc(14ch + 1.25rem);
+}
+
+.cv-list dd:last-of-type {
+	margin-bottom: 0;
 }
 
 @media (max-width: 30rem) {
-	.cv-list {
-		grid-template-columns: 1fr;
-		row-gap: 0.125rem;
+	.cv-list dt {
+		float: none;
+		width: auto;
+		margin-top: 0.5rem;
 	}
 
-	.cv-list dt {
-		margin-top: 0.5rem;
+	.cv-list dd {
+		margin-left: 0;
 	}
 }
