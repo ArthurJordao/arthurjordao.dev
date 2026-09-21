@@ -14,7 +14,16 @@ export const siteConfig: SiteConfig = {
 	// Used as both a meta property (src/components/BaseHead.astro L:31 + L:49) & the generated satori png (src/pages/og-image/[slug].png.ts)
 	author: "Arthur Jordão",
 	// Used as the default description meta property and webmanifest description
-	description: "Arthur Jordão - Software made simple",
+	description:
+		"Arthur Jordão (Arthur Jordao) is a software engineer at NoRedInk writing Haskell in production. Notes on functional programming, developer tooling and self-hosting.",
+	// The fields below feed the schema.org Person in src/components/Schema.astro.
+	// They exist to answer one question for a search engine: of the several
+	// people named Arthur Jordão, which one is this domain about?
+	alternateName: "Arthur Jordao",
+	jobTitle: "Software Engineer",
+	employer: { name: "NoRedInk", url: "https://www.noredink.com/" },
+	knowsAbout: ["Haskell", "Clojure", "Elm", "Functional programming"],
+	profileImage: "/images/pp.webp",
 	fediverseCreator: "@arthurjordao@bolha.us",
 	twitterCreator: "@_ArthurJordao",
 	// HTML lang property, found in src/layouts/Base.astro L:18 & astro.config.ts L:48

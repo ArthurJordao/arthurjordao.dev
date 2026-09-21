@@ -1,9 +1,23 @@
 export interface SiteConfig {
+	/**
+	 * Unaccented spelling of the author's name, emitted as schema.org
+	 * alternateName. "Arthur Jordao" is how the name gets typed far more often
+	 * than "Arthur Jordão", and it appears nowhere else on the site.
+	 */
+	alternateName?: string;
 	author: string;
 	date: {
 		options: Intl.DateTimeFormatOptions;
 	};
 	description: string;
+	/** Current employer, emitted as schema.org worksFor. */
+	employer?: { name: string; url: string };
+	/** Emitted as schema.org jobTitle. */
+	jobTitle?: string;
+	/** Topics the author works in, emitted as schema.org knowsAbout. */
+	knowsAbout?: string[];
+	/** Site-relative path to the author's photo, emitted as schema.org image. */
+	profileImage?: string;
 	/** Fediverse handle, so Mastodon credits the author on link previews. */
 	fediverseCreator?: string;
 	/** Twitter/X handle, so cards credit the author. */

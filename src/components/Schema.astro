@@ -1,0 +1,61 @@
+---
+import { sameAsLinks } from "@/data/social";
+import { siteConfig } from "@/site.config";
+
+/**
+ * schema.org Person + WebSite, emitted site-wide as a single @graph.
+ *
+ * The point is entity disambiguation. Several people share this name, some of
+ * them on far higher-authority domains, so the site states outright which one
+ * it belongs to: the job title, the employer and — most of all — sameAs
+ * pointing at the profiles that link back here.
+ *
+ * Every URL below is built through `new URL(..., siteConfig.url)` and is
+ * therefore absolute. This is deliberate: the Hugo site this replaced shipped
+ * without a baseURL, emitted root-relative permalinks, and had Search Console
+ * reject both its sitemap <loc>s and its BreadcrumbList item @id for exactly
+ * that reason. Relative URLs in structured data are not valid.
+ */
+const absolute = (path: string) => new URL(path, siteConfig.url).href;
+
+const personId = absolute("#person");
+const websiteId = absolute("#website");
+
+const person = {
+	"@type": "Person",
+	"@id": personId,
+	name: siteConfig.author,
+	...(siteConfig.alternateName && { alternateName: siteConfig.alternateName }),
+	url: absolute("/"),
+	...(siteConfig.profileImage && { image: absolute(siteConfig.profileImage) }),
+	...(siteConfig.jobTitle && { jobTitle: siteConfig.jobTitle }),
+	...(siteConfig.employer && {
+		worksFor: {
+			"@type": "Organization",
+			name: siteConfig.employer.name,
+			url: siteConfig.employer.url,
+		},
+	}),
+	...(siteConfig.knowsAbout && { knowsAbout: siteConfig.knowsAbout }),
+	description: siteConfig.description,
+	sameAs: sameAsLinks,
+};
+
+const website = {
+	"@type": "WebSite",
+	"@id": websiteId,
+	url: absolute("/"),
+	name: siteConfig.title,
+	description: siteConfig.description,
+	inLanguage: siteConfig.lang,
+	publisher: { "@id": personId },
+	author: { "@id": personId },
+};
+
+const schema = {
+	"@context": "https://schema.org",
+	"@graph": [person, website],
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />

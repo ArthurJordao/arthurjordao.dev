@@ -1,5 +1,6 @@
 ---
 import { WEBMENTION_PINGBACK, WEBMENTION_URL } from "astro:env/client";
+import Schema from "@/components/Schema.astro";
 import { siteConfig } from "@/site.config";
 import type { SiteMeta } from "@/types";
 import "@/styles/global.css";
@@ -79,6 +80,9 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 		</>
 	)
 }
+
+{/* Structured data: tells search engines which Arthur Jordão this is */}
+<Schema />
 
 {/* Sitemap */}
 <link href="/sitemap-index.xml" rel="sitemap" />
