@@ -97,6 +97,12 @@ export interface CvLanguage {
 export interface Cv {
 	basics: CvBasics;
 	summary: string;
+	/**
+	 * LinkedIn's About field, which holds 2,600 characters against the CV
+	 * summary's few hundred. Longer on purpose: on paper the roles below carry
+	 * the evidence, and on LinkedIn this is often read on its own.
+	 */
+	linkedinAbout: string;
 	positions: CvPosition[];
 	education: CvEducation[];
 	languages: CvLanguage[];
@@ -117,6 +123,21 @@ export const cv: Cv = {
 		`${yearsSince("2022-04")} years writing Haskell in production at NoRedInk, and before that ` +
 		"Clojure on Nubank's lending infrastructure. Most of my career has been functional " +
 		"programming at companies running it at scale.",
+	linkedinAbout: [
+		"Self-taught software engineer. Four years writing Haskell in production at NoRedInk, " +
+			"and before that Clojure on Nubank's lending infrastructure.",
+		"Most of what I have built lives where correctness is not optional. At Nubank I took " +
+			"payments out of the personal loan domain into a service of their own, settling boleto " +
+			"and Pix directly with the services that move money, idempotent end to end. I led the " +
+			"online underwriting path, where features depend on other features and the engine " +
+			"resolves them as a DAG. At NoRedInk I proposed backing our event platform's editor " +
+			"with GitHub rather than a CMS: definitions are versioned YAML, review and audit come " +
+			"free, and CI generates typed clients for Ruby, Elm and Haskell.",
+		"I care about pair programming and about tests that let you change things without fear — " +
+			"less as principles than as the reason those systems stayed safe to touch.",
+		"Outside work: finance, business and philosophy, the gym, chess, and baking cakes.",
+		"hi@arthurjordao.dev · github.com/ArthurJordao",
+	].join("\n\n"),
 	positions: [
 		{
 			company: "NoRedInk",
@@ -212,3 +233,12 @@ export const cv: Cv = {
  * ships to LinkedIn, which renders each role's `tech` unmerged.
  */
 export const skills: string[] = [...new Set(cv.positions.flatMap((position) => position.tech))];
+
+const ABOUT_LIMIT = 2600;
+
+if (cv.linkedinAbout.length > ABOUT_LIMIT) {
+	throw new Error(
+		`src/data/cv.ts: linkedinAbout is ${cv.linkedinAbout.length} characters; LinkedIn ` +
+			`truncates past ${ABOUT_LIMIT} without saying so.`,
+	);
+}

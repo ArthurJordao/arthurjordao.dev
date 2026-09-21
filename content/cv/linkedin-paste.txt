@@ -6,7 +6,15 @@
 Software Engineer | Functional programming and distributed systems
 
 ## ABOUT
-Self-taught software engineer. Four years writing Haskell in production at NoRedInk, and before that Clojure on Nubank's lending infrastructure. Most of my career has been functional programming at companies running it at scale.
+Self-taught software engineer. Four years writing Haskell in production at NoRedInk, and before that Clojure on Nubank's lending infrastructure.
+
+Most of what I have built lives where correctness is not optional. At Nubank I took payments out of the personal loan domain into a service of their own, settling boleto and Pix directly with the services that move money, idempotent end to end. I led the online underwriting path, where features depend on other features and the engine resolves them as a DAG. At NoRedInk I proposed backing our event platform's editor with GitHub rather than a CMS: definitions are versioned YAML, review and audit come free, and CI generates typed clients for Ruby, Elm and Haskell.
+
+I care about pair programming and about tests that let you change things without fear — less as principles than as the reason those systems stayed safe to touch.
+
+Outside work: finance, business and philosophy, the gym, chess, and baking cakes.
+
+hi@arthurjordao.dev · github.com/ArthurJordao
 
 ## EXPERIENCE
 
