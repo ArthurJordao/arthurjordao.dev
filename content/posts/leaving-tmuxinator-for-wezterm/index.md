@@ -15,16 +15,19 @@ a session with the layout I always wanted, editor in one window and a couple of 
 
 I still work exactly that way. I just don't run any of those three tools anymore.
 
-## Why I switched
+## What I don't like about tmux
 
-tmux is a layer between the program and the terminal, and a layer can only pass through what it
-understands. Every capability my terminal grew that tmux had no concept of was a capability I didn't
-have while working inside tmux, which was all of the time.
+Copy mode. Truecolor, which needs `terminal-overrides` coaxing before it behaves. And the things
+WezTerm does natively that tmux can't pass through at all, images being the obvious one.
 
-Image rendering is the clearest case. A terminal that can draw an image is useless to you if
-everything you run is inside a multiplexer with no representation for one. Same for other newer
-escape sequences: the multiplexer has to learn each one before anything under it can use it, and
-that's a permanent lag.
+Why would I run a GPU-accelerated terminal and then hobble it with a layer that can't show me what
+it draws?
+
+That question is the general case of the other complaints. tmux sits between the program and the
+terminal, and a layer can only pass through what it understands. A terminal that can draw an image
+is useless to you if everything you run is inside a multiplexer with no representation for one, and
+the same goes for every newer escape sequence: the multiplexer has to learn each one before anything
+under it can use it, and that's a permanent lag.
 
 So I didn't go looking for a better multiplexer. I wanted things the terminal could already do,
 found out tmux was what stood between me and them, and only then checked whether I could get my
