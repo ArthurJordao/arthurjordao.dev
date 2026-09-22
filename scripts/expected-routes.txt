@@ -2,10 +2,14 @@
 /about/
 /cv/
 /posts/
+/posts/a-place-to-put-the-thinking/
 /posts/building-microservices-with-haskell/
 /posts/tmux-tmuxinator-fzf-workflow/
 /tags/
+/tags/ai/
 /tags/dotfiles/
 /tags/haskell/
+/tags/notes/
 /tags/productivity/
+/tags/selfhost/
 /tags/tmux/
