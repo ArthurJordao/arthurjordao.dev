@@ -32,10 +32,10 @@ tied to Claude anymore.
 
 The tools matter less than the shape, and the shape is three things:
 
-- A store you host. Plain markdown in a directory, files I can `cat` and grep when everything else
+- A store you host. Plain markdown in a directory, files you can `cat` and grep when everything else
   is broken.
 - A protocol any client speaks, which is MCP. Anything that talks MCP can read and write the store,
-  and that is what survives me changing assistant.
+  and that is what survives you changing assistant.
 - Auth in front of it, because it has to be reachable from outside my network.
 
 I run [Basic Memory](https://github.com/basicmachines-co/basic-memory) for the MCP side and
