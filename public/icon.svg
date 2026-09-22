@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <rect width="512" height="512" rx="96" fill="#f4f4f5"/>
-  <text x="256" y="256" fill="#1d1f21" font-family="Helvetica, Arial, sans-serif"
-        font-size="248" font-weight="700" text-anchor="middle"
-        dominant-baseline="central">AJ</text>
+  <rect width="512" height="512" rx="112" fill="#1d1f21"/>
+  <g fill="none" stroke="#2bbc8a" stroke-width="70" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M178 106 L364 406"/>
+    <path d="M268 252 L150 406"/>
+  </g>
 </svg>
