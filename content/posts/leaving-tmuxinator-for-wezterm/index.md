@@ -15,15 +15,15 @@ a session with the layout I always wanted, editor in one window and a couple of 
 
 I still work exactly that way. I just don't run any of those three tools anymore.
 
-## What I don't like about tmux
+## Why I moved
 
-Copy mode. Truecolor, which needs `terminal-overrides` coaxing before it behaves. And the things
-WezTerm does natively that tmux can't pass through at all, images being the obvious one.
+I wanted the terminal as it actually is. Going into tmux's scrollback is a bit annoying, selecting
+text copies it instead of just selecting it, small things like that. None of it matters much and
+none of it is what moved me.
 
-Why would I run a GPU-accelerated terminal and then hobble it with a layer that can't show me what
-it draws?
-
-I wanted WezTerm's power, and tmux was what stood between me and it.
+What moved me is that WezTerm does things natively that tmux can't pass through at all, images being
+the obvious one. Why would I run a GPU-accelerated terminal and then hobble it with a layer that
+can't show me what it draws? I wanted WezTerm's power, and tmux was what stood between me and it.
 
 ## What the old setup was made of
 
