@@ -23,15 +23,7 @@ WezTerm does natively that tmux can't pass through at all, images being the obvi
 Why would I run a GPU-accelerated terminal and then hobble it with a layer that can't show me what
 it draws?
 
-That question is the general case of the other complaints. tmux sits between the program and the
-terminal, and a layer can only pass through what it understands. A terminal that can draw an image
-is useless to you if everything you run is inside a multiplexer with no representation for one, and
-the same goes for every newer escape sequence: the multiplexer has to learn each one before anything
-under it can use it, and that's a permanent lag.
-
-So I didn't go looking for a better multiplexer. I wanted things the terminal could already do,
-found out tmux was what stood between me and them, and only then checked whether I could get my
-workflow back without it.
+I wanted WezTerm's power, and tmux was what stood between me and it.
 
 ## What the old setup was made of
 
