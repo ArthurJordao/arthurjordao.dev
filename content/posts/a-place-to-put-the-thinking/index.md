@@ -124,6 +124,5 @@ staying consistent.
 
 ---
 
-If one tool holds everything you think about then the built-in memory will do fine, and it'll keep
-getting better. I have more than one, and I didn't want my memories to be the vendor's memories
-about me. So I host the markdown, and everything else in here is replaceable.
+If you only use one tool its built-in memory is probably fine and it'll keep getting better, but I
+use more than one and I didn't want to depend on any of them to remember things for me.
