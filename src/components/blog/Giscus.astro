@@ -1,0 +1,80 @@
+---
+// Comments, backed by GitHub Discussions.
+//
+// The <script> tag is built in the browser rather than written into this markup
+// so that it can carry the reader's theme on its very first load. The choice
+// lives in localStorage, which a static page cannot read, so a static tag would
+// paint the widget in the wrong mode until a correction arrived.
+---
+
+<hr class="border-solid" />
+<h2 class="mb-8 before:hidden">Comments</h2>
+<div data-giscus></div>
+
+<script>
+	import { giscus } from "@/data/giscus";
+
+	const ORIGIN = "https://giscus.app";
+
+	function currentTheme() {
+		return document.documentElement.getAttribute("data-theme") === "light"
+			? giscus.themes.light
+			: giscus.themes.dark;
+	}
+
+	// The widget loads lazily, which can be long after this runs, so a theme
+	// toggled in the meantime has nowhere to go. The element is no help in
+	// telling when it can: a lazy iframe has a contentWindow while its document
+	// is still empty, and a message sent then is dropped without a trace. So
+	// nothing counts as delivered until the widget itself says it is listening.
+	let ready = false;
+	let delivered = currentTheme();
+
+	function setTheme() {
+		const theme = currentTheme();
+		if (theme === delivered) return;
+
+		const frame = document.querySelector<HTMLIFrameElement>("iframe.giscus-frame");
+		if (!ready || !frame?.contentWindow) return;
+
+		delivered = theme;
+		frame.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, ORIGIN);
+	}
+
+	const container = document.querySelector("[data-giscus]");
+	if (container) {
+		const script = document.createElement("script");
+		script.src = `${ORIGIN}/client.js`;
+		script.async = true;
+		script.crossOrigin = "anonymous";
+		Object.assign(script.dataset, {
+			category: giscus.category,
+			categoryId: giscus.categoryId,
+			emitMetadata: "0",
+			inputPosition: "top",
+			lang: "en",
+			loading: "lazy",
+			mapping: "pathname",
+			reactionsEnabled: "1",
+			repo: giscus.repo,
+			repoId: giscus.repoId,
+			strict: "1",
+			theme: delivered,
+		});
+		container.append(script);
+
+		// The widget announces itself once it is listening. A theme toggled while
+		// it was still unloaded is stale by then, so this is where it is corrected.
+		addEventListener("message", (event) => {
+			if (event.origin !== ORIGIN || !event.data?.giscus) return;
+			ready = true;
+			setTheme();
+		});
+
+		// data-theme changes from the toggle, from a bfcache restore and from the OS
+		// preference, and only the toggle fires an event, so watch the attribute.
+		new MutationObserver(setTheme).observe(document.documentElement, {
+			attributeFilter: ["data-theme"],
+		});
+	}
+</script>
