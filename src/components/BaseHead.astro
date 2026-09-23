@@ -43,6 +43,12 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 {/* Canonical URL */}
 <link href={canonicalURL} rel="canonical" />
 
+{/* giscus writes a link back to the page into the discussion it opens, and with
+	nothing to go on it uses window.location.href — so a first comment left from
+	a dev server or a preview deployment bakes that address into a discussion
+	that is public and permanent. Only articles carry the widget. */}
+{articleDate && <meta content={canonicalURL} name="giscus:backlink" />}
+
 {/* Primary Meta Tags */}
 <meta content={siteTitle} name="title" />
 <meta content={description} name="description" />
